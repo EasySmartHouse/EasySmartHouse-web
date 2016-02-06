@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Aug 27, 2015, 6:05:25 PM
+    Author     : rusakovich
+*/
+
+#webcams {
+    position: relative;
+    padding: 30px;
+    text-align: center;
+}
+
+.webcam {
+    position: relative;
+    height: auto;
+    width: auto;
+    text-align: center;
+    display: inline-block;
+}
+
+.webcam span {
+    z-index: 2;
+    position: absolute;
+    font-weight: bold;
+    line-height: 50px;
+    right: 10px;
+    text-align: center;
+}
+
+.wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+img {
+    z-index: 1;
+    position: relative;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    width: 348px;
+    height: 198px;
+    box-shadow: 0 0 16px #444;
+    border: 1px solid #fff;
+}

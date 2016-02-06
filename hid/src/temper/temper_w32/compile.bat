@@ -1,0 +1,1 @@
+cl "-IC:/Progra~1/Java/jdk1.7.0_51/include" "-IC:/Progra~1/Java/jdk1.7.0_51/include/win32" -LD temper.cpp -Ftemper_w32.dll lubusb.lib

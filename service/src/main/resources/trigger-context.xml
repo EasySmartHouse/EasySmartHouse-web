@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <bean id="humidityTrigger" class="by.ginger.smarthome.provider.device.trigger.PlainActuatorTrigger">
+        <property name="name" value="Humidity common trigger"/>
+        <property name="actuatorAddress" value="USB0:1503:5824:0"/>
+        <property name="actuatorValue">
+            <value type="java.lang.Boolean">true</value>
+        </property>
+    </bean>
+    
+    <bean id="humidityTriggerCondition" class="by.ginger.smarthome.el.trigger.ExpressionTriggerCondition">
+        <constructor-arg>
+            <value><![CDATA[$${(humiditySensorOutdoor > 55.0) or (humiditySensorInside < 34.5)}]]></value>
+        </constructor-arg>
+    </bean>
+    
+    <bean name="triggersModule" class="by.ginger.smarthome.modules.TriggerCheckModule" init-method="initModule">
+        <property name="scheduler" ref="scheduler"/>
+        <property name="triggers">
+            <map>
+                <entry key-ref="humidityTrigger" value-ref="humidityTriggerCondition" />
+            </map>
+        </property>
+        <property name="taskDelay">
+            <bean class="java.lang.Long">
+                <constructor-arg index="0" value="500"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="serviceName" value="trigger-service"/>
+        <property name="service" ref="triggersModule"/>
+        <property name="serviceInterface" value="by.ginger.smarthome.provider.device.trigger.TriggerModule"/>
+        <property name="registryPort" value="9001"/>
+    </bean>
+    
+</beans>

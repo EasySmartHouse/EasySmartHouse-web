@@ -1,0 +1,52 @@
+/* 
+    Document   : login
+    Created on : Jun 13, 2015, 10:21:02 PM
+    Author     : mirash
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.blackText {
+   font-family: Arial, Sans-serif;
+   color: #000000;
+   font-size: 11px;
+   text-align: left;
+}
+
+.redText {
+   font-family: Arial, Sans-serif;
+   color: #ff0000;
+   font-size: 11px;
+   text-align: left;
+}
+
+.loginButton {
+   border: 1px solid #3399DD;
+   color: #FFFFFF;
+   background: #555555;
+   font-size: 11px;
+   font-weight: bold;
+   margin: 0 5px 0 0;
+   padding: 4px 10px 5px;
+   text-shadow: 0 -1px 0 #3399DD;
+}
+
+.box {
+   border: 1px solid #AACCEE;
+   display: block;
+   font-size: 12px;
+   margin: 0 0 5px;
+   padding: 3px;
+   width: 203px;
+}
+
+.background {
+   background-color: #999999;
+   border: 1px none transparent;
+   color: #000000;
+   font-size: 11px;
+   margin-left: -8px;
+   margin-top: 5px;
+   padding: 6px;
+}
+

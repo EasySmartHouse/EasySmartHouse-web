@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+"http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <!-- Default page to serve -->
+    <welcome-file-list>
+        <welcome-file>webui.html</welcome-file>
+    </welcome-file-list>
+    
+    <!-- Spring context configuration path -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:web-context.xml</param-value>
+    </context-param>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <servlet>
+        <servlet-name>monitoringServlet</servlet-name>
+        <servlet-class>by.ginger.smarthome.ui.webui.server.MonitoringServiceImpl</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>actuatorsServlet</servlet-name>
+        <servlet-class>by.ginger.smarthome.ui.webui.server.ActuatorsServiceImpl</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>signalingServlet</servlet-name>
+        <servlet-class>by.ginger.smarthome.ui.webui.server.SignalingServiceImpl</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>triggerServlet</servlet-name>
+        <servlet-class>by.ginger.smarthome.ui.webui.server.TriggersServiceImpl</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>authServlet</servlet-name>
+        <servlet-class>by.ginger.smarthome.ui.webui.server.auth.AuthServiceImpl</servlet-class>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>gwtRequest</servlet-name>
+        <servlet-class>by.ginger.smarthome.ui.webui.server.auth.AuthRequestFactoryServlet</servlet-class>
+    </servlet>
+        
+    <filter>
+        <filter-name>redirectingFilter</filter-name>
+        <filter-class>by.ginger.smarthome.ui.webui.server.filter.RedirectingFilter</filter-class>
+    </filter>
+      
+    <filter-mapping>
+        <filter-name>redirectingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>monitoringServlet</servlet-name>
+        <url-pattern>/webui/monitoring</url-pattern>
+    </servlet-mapping>
+        
+    <servlet-mapping>
+        <servlet-name>signalingServlet</servlet-name>
+        <url-pattern>/webui/signaling</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>actuatorsServlet</servlet-name>
+        <url-pattern>/webui/actuators</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>triggerServlet</servlet-name>
+        <url-pattern>/webui/trigger</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>authServlet</servlet-name>
+        <url-pattern>/webui/auth</url-pattern>
+    </servlet-mapping>
+    
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+</web-app>

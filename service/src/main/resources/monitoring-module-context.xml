@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+    
+    <bean name="tempSensor1" class="by.ginger.smarthome.provider.device.sensor.PlainSensor">
+        <property name="sensorType" value="TemperatureSensor"/>
+        <property name="address" value="C2000801AC339F10"/>
+        <property name="label" value="Temperature sensor 1"/>
+        <property name="description" value="Temperature sensor outside"/>
+    </bean>
+
+    <bean name="tempSensor2" class="by.ginger.smarthome.provider.device.sensor.PlainSensor">
+        <property name="sensorType" value="TemperatureSensor"/>
+        <property name="address" value="EC000801AC673410"/>
+        <property name="label" value="Temperature sensor 2"/>
+        <property name="description" value="Temperature sensor outside"/>
+    </bean>
+    
+    <bean name="serverSensor" class="by.ginger.smarthome.provider.device.sensor.PlainSensor">
+        <property name="sensorType" value="TemperatureSensor"/>
+        <property name="address" value="USB0:29697:3141:0"/>
+        <property name="label" value="Server temperature sensor"/>
+        <property name="description" value="Server temperature sensor"/>
+    </bean>
+
+    <bean name="monitoringSystem" class="by.ginger.smarthome.modules.SensorMonitoringModule" init-method="initModule">
+        <property name="scheduler" ref="scheduler"/>
+        <property name="sensors">
+            <list>
+                <ref bean="tempSensor1"/>
+                <ref bean="tempSensor2"/>
+                <ref bean="serverSensor"/>
+            </list>
+        </property>
+        <property name="taskDelay">
+            <bean class="java.lang.Long">
+                <constructor-arg index="0" value="3000"/>
+            </bean>
+        </property>
+    </bean>
+    
+    <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
+        <property name="serviceName" value="monitoring-service"/>
+        <property name="service" ref="monitoringSystem"/>
+        <property name="serviceInterface" value="by.ginger.smarthome.provider.device.sensor.SensorModule"/>
+        <property name="registryPort" value="9001"/>
+    </bean>
+    
+    <beans profile="mocks">
+        
+        <bean name="humiditySensorOutdoor" class="by.ginger.smarthome.provider.device.sensor.PlainSensor">
+            <property name="sensorType" value="HumiditySensor"/>
+            <property name="address" value="D4500801BC389D10"/>
+            <property name="label" value="Humidity sensor outdoor"/>
+            <property name="description" value="Humidity sensor outdoor"/>
+            <property name="container">
+                <bean class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+                    <property name="targetObject" ref="monitoringSystem" />
+                    <property name="propertyPath" value="sensors" />
+                </bean>
+            </property>
+        </bean>
+    
+        <bean name="humiditySensorInside" class="by.ginger.smarthome.provider.device.sensor.PlainSensor">
+            <property name="sensorType" value="HumiditySensor"/>
+            <property name="address" value="D4500801BC389D17"/>
+            <property name="label" value="Humidity sensor in room"/>
+            <property name="description" value="Humidity sensor in room"/>
+            <property name="container">
+                <bean class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+                    <property name="targetObject" ref="monitoringSystem" />
+                    <property name="propertyPath" value="sensors" />
+                </bean>
+            </property>
+        </bean>
+    
+        <bean name="pressureSensorOutdoor" class="by.ginger.smarthome.provider.device.sensor.PlainSensor">
+            <property name="sensorType" value="PressureSensor"/>
+            <property name="address" value="A4500801DC389D16"/>
+            <property name="label" value="Pressure sensor outdoor"/>
+            <property name="description" value="Pressure sensor outdoor"/>
+            <property name="container">
+                <bean class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+                    <property name="targetObject" ref="monitoringSystem" />
+                    <property name="propertyPath" value="sensors" />
+                </bean>
+            </property>
+        </bean>
+        
+    </beans>
+
+
+</beans>

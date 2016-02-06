@@ -1,0 +1,91 @@
+<!doctype html>
+<!--
+The DOCTYPE declaration above will set the browser's rendering engine into
+"Standards Mode". Replacing this declaration with a "Quirks Mode" doctype may
+lead to some differences in layout.
+-->
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="img/favicon.ico">
+
+        <!--                                                               -->
+        <!-- Consider inlining CSS to reduce the number of requested files -->
+        <!--                                                               -->
+        <link type="text/css" rel="stylesheet" href="css/webui.css">
+        <link type="text/css" rel="stylesheet" href="css/jquery-ui.css" >
+        <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet"/>
+        <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css"/>
+        <link type="text/css" rel="stylesheet" href="css/bootstrap-formhelpers.css"/>
+        <link type="text/css" rel="stylesheet" href="css/bootstrap-dialog.css"/>
+
+        <!--                                           -->
+        <!-- Any title is fine                         -->
+        <!--                                           -->
+        <title>Smart Home Control</title>
+
+        <!--                                           -->
+        <!-- This script loads your compiled module.   -->
+        <!-- If you add any GWT meta tags, they must   -->
+        <!-- be added before this line.                -->
+        <!--                                           -->
+        <script type="text/javascript" language="javascript" src="webui/webui.nocache.js"></script>
+        <script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/gwt-bootstrap-wrapper.js" type="text/javascript" charset="utf-8"></script> 
+        <script src="js/bootstrap-formhelpers.js" type="text/javascript" charset="utf-8"></script> 
+        <script src="js/lang-support.js" type="text/javascript" charset="utf-8"></script> 
+        <script src="js/bootstrap-dialog.js" type="text/javascript" charset="utf-8"></script>     
+        
+    </head>
+    <body>
+        <div id="loading-Message">
+            <img src="img/loader.gif" alt="loading" height="200" width="200"/>
+            <p><font size="5" color="black">Loading...</font></p>
+        </div>   
+
+        <iframe src="javascript:''" id="__gwt_historyFrame" style="width:0;height:0;border:0"></iframe>
+
+        <div class="container">
+
+            <div class="header">
+
+                <nav>
+                    <ul class="nav nav-pills pull-right">
+                        <li>
+                            <div class="bfh-selectbox bfh-languages" data-available="en_US,ru_RU" data-flags="true" data-blank="false">
+                                <input type="hidden" value="">
+                                <a class="bfh-selectbox-toggle" role="button" data-toggle="bfh-selectbox" href="#">
+                                    <b class="caret"></b>
+                                </a>
+                                <div class="bfh-selectbox-options">
+                                    <div role="listbox">
+                                        <ul role="option">
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li role="presentation" class="active">
+                            <a href="#"><span id="logout"></span></a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <h3 class="text-muted"><span id="welcome"></span></h3>
+
+            </div>
+
+            <div id="content">
+            </div>
+
+            <div class="footer">
+                <p>&copy; SmartHome 2015</p>
+            </div>
+
+        </div>
+    </body>
+</html>

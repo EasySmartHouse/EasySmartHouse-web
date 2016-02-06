@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>by.ginger.smarthome</groupId>
+        <artifactId>SmartHome</artifactId>
+        <version>0.1</version>
+    </parent>
+    <groupId>by.ginger.smarthome</groupId>
+    <artifactId>mocks</artifactId>
+    <version>0.1</version>
+    <name>mocks</name>
+    <url>http://maven.apache.org</url>
+        
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <onewire.version>1.10</onewire.version>
+    </properties>
+    <dependencies>
+               
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>by.ginger.smarthome</groupId>
+            <artifactId>device</artifactId>
+            <version>0.1</version>
+        </dependency>
+		
+        <dependency>
+            <groupId>by.ginger.smarthome</groupId>
+            <artifactId>network</artifactId>
+            <version>0.1</version>
+        </dependency>
+        
+    </dependencies>
+    
+</project>

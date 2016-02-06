@@ -1,0 +1,85 @@
+/* 
+    Document   : login
+    Created on : Sep 27, 2015, 4:47:06 PM
+    Author     : mirash
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.errors-login{
+    max-width: 330px;
+    margin: 20px auto;
+}
+
+.form-login {
+    max-width: 330px;
+    padding: 15px;
+    margin: 20px auto;
+    -moz-box-shadow: 0 0 2px black;
+    -webkit-box-shadow: 0 0 2px black;
+    box-shadow: 0 0 2px black;
+}
+
+.form-login .form-login-heading,
+.form-login .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-login .checkbox {
+    font-weight: normal;
+}
+
+.form-login .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-login .form-control:focus {
+    z-index: 2;
+}
+
+.form-login input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-login input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-login > table > tbody > tr > td:nth-child(2) {
+    padding-left:20px;
+}
+
+.header{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.header {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+ul.nav li.active a {
+    color: #fff !important;
+}
+
+.bfh-languages{
+    margin : -20px !important;
+}
+
+

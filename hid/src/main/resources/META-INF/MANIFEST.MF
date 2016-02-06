@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: Mikhail Rusakovich
+Built-By: Mikhail Rusakovich
+Implementation-Vendor: Mikhail Rusakovich
+Implementation-Title: hid

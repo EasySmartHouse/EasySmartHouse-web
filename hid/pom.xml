@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>by.ginger.smarthome</groupId>
+        <artifactId>SmartHome</artifactId>
+        <version>0.1</version>
+    </parent>
+    <groupId>by.ginger.smarthome</groupId>
+    <artifactId>hid</artifactId>
+    <version>0.1</version>
+    <name>hid</name>
+    <url>http://maven.apache.org</url>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <hidapi.version>1.1</hidapi.version>
+    </properties>
+    
+    <build>
+        
+        <resources>
+            <resource>
+                <filtering>false</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>lib/*.*</include>
+                </includes>
+            </resource>            
+        </resources>
+        
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+                <configuration>
+                    <!--stylesheetfile>resources/misc/stylesheet.css</stylesheetfile-->
+                </configuration>
+            </plugin>
+      
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <includes>
+                        <include>**/*.java</include>
+                        <include>temper/**/*</include>
+                    </includes>
+                </configuration>
+            </plugin>
+      
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+                    </archive>
+                </configuration>
+            </plugin>
+      
+        </plugins>
+    </build>
+    
+    <dependencies>
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.usb4java</groupId>
+            <artifactId>usb4java</artifactId>
+            <version>1.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>by.ginger.smarthome</groupId>
+            <artifactId>device</artifactId>
+            <version>0.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>by.ginger.smarthome</groupId>
+            <artifactId>network</artifactId>
+            <version>0.1</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>by.creepid</groupId>
+            <artifactId>jusbrelay</artifactId>
+            <version>0.1</version>
+        </dependency>
+            
+    </dependencies>
+    
+    <repositories>
+        <repository>
+            <id>jusbrelay-mvn-repo</id>
+            <url>https://raw.github.com/creepid/jusbrelay/mvn-repo/</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+    
+</project>

@@ -1,0 +1,115 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 24, 2014, 3:44:32 PM
+    Author     : rusakovich
+*/
+
+body{
+    text-align: center;
+    font-family: verdana, sans-serif;
+    background:#eee !important;
+}
+
+h1{
+    font-size: 2em;
+    font-weight: bold;
+    color: #777777;
+    margin: 40px 0px 70px;
+    text-align: center;
+}
+
+#loading-Message {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    margin-left: -100px;
+}
+
+.tab-grid{ 
+    width: 700px;
+    border-spacing: 0px;
+    padding: 0px;
+}
+
+.tab-grid > tbody > tr:first-child > td {
+    color:#fff;
+    background-color:#337ab7;
+    text-align:center; 
+    vertical-align:middle;
+}
+
+#rootView > table {
+    margin: 0 auto;
+}
+
+#rootView > table > tbody > tr > td {
+    padding: 10px;
+}
+
+#rootView > table > tbody > tr:first-child > td > table {
+    width: 100%;
+}
+
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+.header{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.header {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.header h3 {
+    padding-bottom: 19px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+    text-align: left;
+    font-size: 1.3em;
+}
+
+ul.nav li.active a {
+    color: #fff !important;
+}
+
+.gwt-TabBarItem-wrapper-selected{
+    color:#fff;
+    background: #337ab7;
+}
+
+.gwt-TabBarItem-wrapper, .gwt-Hyperlink{
+    cursor: pointer;
+}
+
+.gwt-DecoratedTabPanel{
+    padding: 15px;
+    -moz-box-shadow: 0 0 2px black;
+    -webkit-box-shadow: 0 0 2px black;
+    box-shadow: 0 0 2px black;
+}
+
+.bfh-languages{
+    width: 150px;
+    float:right;/*Add float left*/
+    margin :5px;
+}
+
+.tab-grid.table-striped td{
+    padding: 8px;
+}
+
+.tab-grid.table-striped tr > td:first-child{
+    text-align: center;
+}
