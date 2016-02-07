@@ -5,7 +5,7 @@
     <artifactId>SmartHome</artifactId>
     <version>0.1</version>
     <packaging>pom</packaging>
-    <name>SmartHome</name>
+    <name>Easy SmartHouse</name>
     
     <properties>
         <spring.version>3.2.0.RELEASE</spring.version>

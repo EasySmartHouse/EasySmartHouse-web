@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-var GwtAnchor = {
+if (!net)
+    var net = {};
+if (!net.easysmarthouse)
+    net.easysmarthouse = {};
+if (!net.easysmarthouse.gwt)
+    net.easysmarthouse.gwt = {};
+net.easysmarthouse.gwt.anchor = {
     getHash: function() {
         var hash = self.document.location.hash;
         if (hash) {
@@ -13,4 +18,4 @@ var GwtAnchor = {
         }
         return "";
     }
-}
+};

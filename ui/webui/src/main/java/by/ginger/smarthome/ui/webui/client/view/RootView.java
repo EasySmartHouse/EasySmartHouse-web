@@ -136,6 +136,6 @@ public class RootView extends View implements HistoryChangeListener {
     }
 
     private static native void gwtWrap() /*-{
-     $wnd.gwtWrap();
+     $wnd.net.easysmarthouse.gwt.wrap();
      }-*/;
 }

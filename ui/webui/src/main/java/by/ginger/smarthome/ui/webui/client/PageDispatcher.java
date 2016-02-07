@@ -21,7 +21,7 @@ public class PageDispatcher {
     }
 
     public static native String getAnchorHash() /*-{
-     return $wnd.GwtAnchor.getHash();
+     return $wnd.net.easysmarthouse.gwt.anchor.getHash();
      }-*/;
 
     private String getNewLocation(String currentLocation, Page currentPage, Page newPage) {
