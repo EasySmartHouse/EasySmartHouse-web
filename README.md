@@ -1,6 +1,6 @@
-# SmartHouse ![SmartHouse Logo](http://s7.postimg.org/7hkfs9f8b/Smart_House_Logo.png)
+# Easy SmartHouse ![SmartHouse Logo](https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/logos/1_Primary_logo_on_transparent.png)
 
-SmartHouse project is an attempt to create a universal platform for the management of home devices using popular interface interaction. At the moment, you can work with devices on the **serial**, **USB** and **1-Wire** protocols, survey and secure your estate using a large number of supported cameras. To add support for the device is quite easy - you just need to add it in one of the configuration files.
+SmartHouse project is an attempt to create an universal platform for the management of home devices using popular interface interaction. At the moment, you can work with devices on the **serial**, **USB** and **1-Wire** protocols, survey and secure your estate using a large number of supported cameras. To add support for the device is quite easy - you just need to add it in one of the configuration files.
 Also, some kinds of mock-devices are available for development stage.
 
 ### Embedded expression language ###
@@ -13,20 +13,20 @@ For now, ***web UI*** is only available
 *(click on image to view full size)*.
 
 [![Login page][2]][1] [![Climate control page][4]][3] [![Cameras page][6]][5] [![Light control page][8]][7] [![Signaling elements page][10]][9]
-  [1]: http://postimg.org/image/ofvjupr41/
-  [2]: http://s16.postimg.org/ofvjupr41/sm_login.jpg
+  [1]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-login.png
+  [2]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-login-180x109.jpg
  (Login page)
-  [3]: http://postimg.org/image/jozj9k11x/
-  [4]: http://s10.postimg.org/jozj9k11x/sm_climate_control.jpg
+  [3]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-monitorings.png
+  [4]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-monitorings-180x109.jpg
 (Climate control page)
-  [5]: http://postimg.org/image/pjqse8iwv/
-  [6]: http://s27.postimg.org/pjqse8iwv/sm_cameras.jpg
+  [5]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-cameras.png
+  [6]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-cameras-180x109.jpg
 (Cameras page)
-  [7]: http://postimg.org/image/b84pteumx/
-  [8]: http://s28.postimg.org/b84pteumx/sm_light_control.jpg
+  [7]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-signaling.png
+  [8]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-switching-180x109.jpg
 (Light control page)
-  [9]: http://postimg.org/image/muvftvx7x/
-  [10]:http://s22.postimg.org/muvftvx7x/sm_signaling.jpg
+  [9]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-signaling.png
+  [10]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-signaling-180x109.jpg
 (Signaling elements page)
 
 
