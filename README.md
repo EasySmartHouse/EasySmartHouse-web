@@ -1,6 +1,6 @@
 # Easy SmartHouse ![SmartHouse Logo](https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/logos/1_Primary_logo_on_transparent.png)
 
-SmartHouse project is an attempt to create an universal platform for the management of home devices using popular interface interaction. At the moment, you can work with devices on the **serial**, **USB** and **1-Wire** protocols, survey and secure your estate using a large number of supported cameras. To add support for the device is quite easy - you just need to add it in one of the configuration files.
+Easy SmartHouse project is an attempt to create an universal platform for the management of home devices using popular interface interaction. At the moment, you can work with devices on the **serial**, **USB** and **1-Wire** protocols, survey and secure your estate using a large number of supported cameras. To add support for the device is quite easy - you just need to add it in one of the configuration files.
 Also, some kinds of mock-devices are available for development stage.
 
 ### Embedded expression language ###
