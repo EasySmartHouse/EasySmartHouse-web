@@ -12,10 +12,10 @@ import java.util.List;
  *
  * @author rusakovich
  */
-public interface DeviceConverter<T> {
+public interface DeviceConverter<Handler> {
 
-    public Device getDevice(T t);
+    public Device getDevice(Handler handler);
 
-    public List<Device> getDevices(List<T> t);
+    public List<Device> getDevices(List<Handler> handler);
 
 }

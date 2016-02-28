@@ -13,21 +13,20 @@ import java.util.List;
  *
  * @author rusakovich
  */
-public abstract class AbstractDeviceConverter<T> implements DeviceConverter<T> {
+public abstract class AbstractDeviceConverter<Handler> implements DeviceConverter<Handler> {
 
     @Override
-    public abstract Device getDevice(T t);
+    public abstract Device getDevice(Handler handler);
 
     @Override
-    public List<Device> getDevices(List<T> objects) {
+    public List<Device> getDevices(List<Handler> objects) {
         final List<Device> devices = new LinkedList<Device>();
 
-        for (T t : objects) {
-            final Device device = this.getDevice(t);
+        for (Handler handler : objects) {
+            final Device device = this.getDevice(handler);
             devices.add(device);
         }
 
         return devices;
     }
-
 }
