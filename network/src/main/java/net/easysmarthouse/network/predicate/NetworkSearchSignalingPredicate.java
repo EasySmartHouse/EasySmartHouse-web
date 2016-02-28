@@ -6,6 +6,7 @@
 package net.easysmarthouse.network.predicate;
 
 import net.easysmarthouse.provider.device.Device;
+import net.easysmarthouse.provider.device.alarm.SignalingElement;
 
 /**
  *
@@ -15,6 +16,21 @@ public class NetworkSearchSignalingPredicate<D extends Device> extends NetworkSe
 
     private boolean signaling;
 
+    @Override
+    public boolean apply(D device) {
+        boolean devicePredicate = super.apply(device);
+        if (!devicePredicate) {
+            return false;
+        }
+
+        if (device instanceof SignalingElement) {
+            SignalingElement signalingElement = (SignalingElement) device;
+            return (signalingElement.isAlarm() == signaling);
+        }
+
+        return true;
+    }
+
     public boolean isSignaling() {
         return signaling;
     }
@@ -22,5 +38,4 @@ public class NetworkSearchSignalingPredicate<D extends Device> extends NetworkSe
     public void setSignaling(boolean signaling) {
         this.signaling = signaling;
     }
-
 }
