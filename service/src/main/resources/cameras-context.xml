@@ -12,7 +12,7 @@
     
     <beans profile="real-cameras">
         <bean id="cameras-server" depends-on="camerasNetworkManager" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-            <property name="targetClass" value="by.ginger.smarthome.cameras.CamerasServer" />
+            <property name="targetClass" value="net.easysmarthouse.cameras.CamerasServer" />
             <property name="targetMethod" value="start" />
             <property name="arguments">
                 <list>
@@ -24,7 +24,7 @@
     
     <beans profile="emulated-cameras">
         <bean id="cameras-server" depends-on="camerasNetworkManager" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
-            <property name="targetClass" value="by.ginger.smarthome.cameras.MockCamerasServer" />
+            <property name="targetClass" value="net.easysmarthouse.cameras.MockCamerasServer" />
             <property name="targetMethod" value="start" />
             <property name="arguments">
                 <list>

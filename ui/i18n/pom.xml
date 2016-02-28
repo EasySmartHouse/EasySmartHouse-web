@@ -3,12 +3,12 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>by.ginger.smarthome</groupId>
+        <groupId>net.easysmarthouse</groupId>
         <artifactId>ui</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
   
-    <groupId>by.ginger.smarthome.ui</groupId>
+    <groupId>net.easysmarthouse.ui</groupId>
     <artifactId>i18n</artifactId>
     <version>0.1</version>
     <name>i18n</name>
@@ -71,14 +71,14 @@
                         <phase>generate-sources</phase>
                         <configuration>
                             <i18nConstantsBundles>
-                                <i18nConstantsBundle>by.ginger.smarthome.ui.i18n.Signaling</i18nConstantsBundle>
-                                <i18nConstantsBundle>by.ginger.smarthome.ui.i18n.Actuators</i18nConstantsBundle>
-                                <i18nConstantsBundle>by.ginger.smarthome.ui.i18n.Monitoring</i18nConstantsBundle>
-                                <i18nConstantsBundle>by.ginger.smarthome.ui.i18n.Cameras</i18nConstantsBundle>
-                                <i18nConstantsBundle>by.ginger.smarthome.ui.i18n.Root</i18nConstantsBundle>
-                                <i18nConstantsBundle>by.ginger.smarthome.ui.i18n.Login</i18nConstantsBundle>
-                                <i18nConstantsBundle>by.ginger.smarthome.ui.i18n.Errors</i18nConstantsBundle>
-                                <i18nConstantsBundle>by.ginger.smarthome.ui.i18n.Trigger</i18nConstantsBundle>
+                                <i18nConstantsBundle>net.easysmarthouse.ui.i18n.Signaling</i18nConstantsBundle>
+                                <i18nConstantsBundle>net.easysmarthouse.ui.i18n.Actuators</i18nConstantsBundle>
+                                <i18nConstantsBundle>net.easysmarthouse.ui.i18n.Monitoring</i18nConstantsBundle>
+                                <i18nConstantsBundle>net.easysmarthouse.ui.i18n.Cameras</i18nConstantsBundle>
+                                <i18nConstantsBundle>net.easysmarthouse.ui.i18n.Root</i18nConstantsBundle>
+                                <i18nConstantsBundle>net.easysmarthouse.ui.i18n.Login</i18nConstantsBundle>
+                                <i18nConstantsBundle>net.easysmarthouse.ui.i18n.Errors</i18nConstantsBundle>
+                                <i18nConstantsBundle>net.easysmarthouse.ui.i18n.Trigger</i18nConstantsBundle>
                             </i18nConstantsBundles>
                         </configuration>
                     </execution>

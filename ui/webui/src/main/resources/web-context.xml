@@ -7,28 +7,28 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
     
-    <context:component-scan base-package="by.ginger.smarthome.ui.webui.server" />
+    <context:component-scan base-package="net.easysmarthouse.ui.webui.server" />
     
     <import resource="classpath:security-context.xml" />
   
     <bean id="monitoringModule" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
         <property name="serviceUrl" value="rmi://localhost:9001/monitoring-service"/>
-        <property name="serviceInterface" value="by.ginger.smarthome.provider.device.sensor.SensorModule"/>
+        <property name="serviceInterface" value="net.easysmarthouse.provider.device.sensor.SensorModule"/>
     </bean>
     
     <bean id="actuatorsModule" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
         <property name="serviceUrl" value="rmi://localhost:9001/light-service"/>
-        <property name="serviceInterface" value="by.ginger.smarthome.provider.device.actuator.ActuatorsModule"/>
+        <property name="serviceInterface" value="net.easysmarthouse.provider.device.actuator.ActuatorsModule"/>
     </bean>
     
     <bean id="signalingModule" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
         <property name="serviceUrl" value="rmi://localhost:9001/signaling-service"/>
-        <property name="serviceInterface" value="by.ginger.smarthome.provider.device.alarm.SignalingModule"/>
+        <property name="serviceInterface" value="net.easysmarthouse.provider.device.alarm.SignalingModule"/>
     </bean>
     
     <bean id="triggerModule" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
         <property name="serviceUrl" value="rmi://localhost:9001/trigger-service"/>
-        <property name="serviceInterface" value="by.ginger.smarthome.provider.device.trigger.TriggerModule"/>
+        <property name="serviceInterface" value="net.easysmarthouse.provider.device.trigger.TriggerModule"/>
     </bean>
     
 </beans>

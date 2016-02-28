@@ -2,7 +2,7 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
    "http://www.springframework.org/dtd/spring-beans.dtd">
 <beans>
-    <bean name="signalingElement" class="by.ginger.smarthome.provider.device.alarm.PlainSignalingElement">
+    <bean name="signalingElement" class="net.easysmarthouse.provider.device.alarm.PlainSignalingElement">
         <property name="enabled" value="true"/>
         <property name="id" value="1"/>
         <property name="title" value="Window sensor: 1"/>
@@ -10,7 +10,7 @@
         <property name="labelAddress" value="FD00000AC4DFE701"/>
     </bean>
   
-    <bean name="signalingModule" class="by.ginger.smarthome.modules.SignalingElementModule" singleton="true" init-method="initModule">
+    <bean name="signalingModule" class="net.easysmarthouse.modules.SignalingElementModule" singleton="true" init-method="initModule">
         <property name="scheduler" ref="scheduler"/>
         <property name="taskDelay">
             <bean class="java.lang.Long">

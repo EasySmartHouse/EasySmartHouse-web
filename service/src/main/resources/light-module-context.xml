@@ -7,31 +7,31 @@
     http://www.springframework.org/schema/context 
     http://www.springframework.org/schema/context/spring-context-3.1.xsd">
     
-    <bean name="guestRoomSwitch" class="by.ginger.smarthome.provider.device.actuator.SimpleSwitch">
+    <bean name="guestRoomSwitch" class="net.easysmarthouse.provider.device.actuator.SimpleSwitch">
         <property name="address" value="9800000020EC3105"/>
         <property name="description" value="Свет в гостинной"/>
         <property name="label" value="Lamp: 1"/>
     </bean>
     
-    <bean name="conditionerSwitch" class="by.ginger.smarthome.provider.device.actuator.SimpleSwitch">
+    <bean name="conditionerSwitch" class="net.easysmarthouse.provider.device.actuator.SimpleSwitch">
         <property name="address" value="USB0:1503:5824:0"/>
         <property name="description" value="Кондиционер"/>
         <property name="label" value="Air Conditioning"/>
     </bean>
             
-    <bean name="teapotSwitch" class="by.ginger.smarthome.provider.device.actuator.SimpleSwitch">
+    <bean name="teapotSwitch" class="net.easysmarthouse.provider.device.actuator.SimpleSwitch">
         <property name="address" value="COM10;0"/>
         <property name="description" value="Чайник реле"/>
         <property name="label" value="Teapot"/>
     </bean>
     
-    <bean name="bathroomSwitch" class="by.ginger.smarthome.provider.device.actuator.SimpleSwitch">
+    <bean name="bathroomSwitch" class="net.easysmarthouse.provider.device.actuator.SimpleSwitch">
         <property name="address" value="COM10;1"/>
         <property name="description" value="Свет в ванной"/>
         <property name="label" value="Light in the bathroom"/>
     </bean>
     
-    <bean name="lightSystem" class="by.ginger.smarthome.modules.ActuatorControlModule"  init-method="initModule">
+    <bean name="lightSystem" class="net.easysmarthouse.modules.ActuatorControlModule"  init-method="initModule">
         
         <property name="actuators">
             <list>
@@ -54,13 +54,13 @@
     <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
         <property name="serviceName" value="light-service"/>
         <property name="service" ref="lightSystem"/>
-        <property name="serviceInterface" value="by.ginger.smarthome.provider.device.actuator.ActuatorsModule"/>
+        <property name="serviceInterface" value="net.easysmarthouse.provider.device.actuator.ActuatorsModule"/>
         <property name="registryPort" value="9001"/>
     </bean>
     
     <beans profile="mocks">
         
-        <bean id="bathroomBlower" class="by.ginger.smarthome.provider.device.actuator.PlainAdjustableActuator">
+        <bean id="bathroomBlower" class="net.easysmarthouse.provider.device.actuator.PlainAdjustableActuator">
             <property name="address" value="234553456775"/>
             <property name="description" value="Вентилятор в ванной"/>
             <property name="label" value="Blower in the bathroom"/>

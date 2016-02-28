@@ -22,37 +22,37 @@ PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
     
     <servlet>
         <servlet-name>monitoringServlet</servlet-name>
-        <servlet-class>by.ginger.smarthome.ui.webui.server.MonitoringServiceImpl</servlet-class>
+        <servlet-class>net.easysmarthouse.ui.webui.server.MonitoringServiceImpl</servlet-class>
     </servlet>
     
     <servlet>
         <servlet-name>actuatorsServlet</servlet-name>
-        <servlet-class>by.ginger.smarthome.ui.webui.server.ActuatorsServiceImpl</servlet-class>
+        <servlet-class>net.easysmarthouse.ui.webui.server.ActuatorsServiceImpl</servlet-class>
     </servlet>
     
     <servlet>
         <servlet-name>signalingServlet</servlet-name>
-        <servlet-class>by.ginger.smarthome.ui.webui.server.SignalingServiceImpl</servlet-class>
+        <servlet-class>net.easysmarthouse.ui.webui.server.SignalingServiceImpl</servlet-class>
     </servlet>
     
     <servlet>
         <servlet-name>triggerServlet</servlet-name>
-        <servlet-class>by.ginger.smarthome.ui.webui.server.TriggersServiceImpl</servlet-class>
+        <servlet-class>net.easysmarthouse.ui.webui.server.TriggersServiceImpl</servlet-class>
     </servlet>
     
     <servlet>
         <servlet-name>authServlet</servlet-name>
-        <servlet-class>by.ginger.smarthome.ui.webui.server.auth.AuthServiceImpl</servlet-class>
+        <servlet-class>net.easysmarthouse.ui.webui.server.auth.AuthServiceImpl</servlet-class>
     </servlet>
     
     <servlet>
         <servlet-name>gwtRequest</servlet-name>
-        <servlet-class>by.ginger.smarthome.ui.webui.server.auth.AuthRequestFactoryServlet</servlet-class>
+        <servlet-class>net.easysmarthouse.ui.webui.server.auth.AuthRequestFactoryServlet</servlet-class>
     </servlet>
         
     <filter>
         <filter-name>redirectingFilter</filter-name>
-        <filter-class>by.ginger.smarthome.ui.webui.server.filter.RedirectingFilter</filter-class>
+        <filter-class>net.easysmarthouse.ui.webui.server.filter.RedirectingFilter</filter-class>
     </filter>
       
     <filter-mapping>

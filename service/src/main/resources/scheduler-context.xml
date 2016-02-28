@@ -4,13 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans 
                            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
     
-    <bean id="timeManager" class="by.ginger.smarthome.sheduler.task.TimeManagerImpl" />
+    <bean id="timeManager" class="net.easysmarthouse.sheduler.task.TimeManagerImpl" />
   
-    <bean id="taskProcessor" class="by.ginger.smarthome.sheduler.task.TaskProcessorImpl">
+    <bean id="taskProcessor" class="net.easysmarthouse.sheduler.task.TaskProcessorImpl">
         <property name="timeManager" ref="timeManager"/>
     </bean>
   
-    <bean id="scheduler" class="by.ginger.smarthome.sheduler.SimpleSchedulerImpl">
+    <bean id="scheduler" class="net.easysmarthouse.sheduler.SimpleSchedulerImpl">
         <property name="taskProcessor" ref="taskProcessor"/>
         <property name="networkManager" ref="networkManagersHub"/>
     </bean>   

@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>SmartHome</artifactId>
-        <groupId>by.ginger.smarthome</groupId>
+        <groupId>net.easysmarthouse</groupId>
         <version>0.1</version>
     </parent>
   
@@ -12,7 +12,7 @@
         <gwt.plugin.version>2.5.0</gwt.plugin.version>
     </properties>
   
-    <groupId>by.ginger.smarthome</groupId>
+    <groupId>net.easysmarthouse</groupId>
     <artifactId>ui</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>pom</packaging>

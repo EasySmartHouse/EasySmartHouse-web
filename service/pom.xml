@@ -3,18 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>by.ginger.smarthome</groupId>
+        <groupId>net.easysmarthouse</groupId>
         <artifactId>SmartHome</artifactId>
         <version>0.1</version>
     </parent>
-    <groupId>by.ginger.smarthome</groupId>
+    <groupId>net.easysmarthouse</groupId>
     <artifactId>service</artifactId>
     <version>0.1</version>
     <name>service</name>
     <url>http://maven.apache.org</url>
     
     <properties>
-        <main.class>by.ginger.smarthome.service.ServiceLauncher</main.class>
+        <main.class>net.easysmarthouse.service.ServiceLauncher</main.class>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
@@ -28,7 +28,7 @@
                         
             <dependencies>
                 <dependency>
-                    <groupId>by.ginger.smarthome</groupId>
+                    <groupId>net.easysmarthouse</groupId>
                     <artifactId>mocks</artifactId>
                     <version>0.1</version>
                 </dependency>
@@ -49,7 +49,7 @@
             
             <dependencies>
                 <dependency>
-                    <groupId>by.ginger.smarthome</groupId>
+                    <groupId>net.easysmarthouse</groupId>
                     <artifactId>mocks</artifactId>
                     <version>0.1</version>
                 </dependency>
@@ -66,19 +66,19 @@
             
             <dependencies>
                 <dependency>
-                    <groupId>by.ginger.smarthome</groupId>
+                    <groupId>net.easysmarthouse</groupId>
                     <artifactId>maxim</artifactId>
                     <version>0.1</version>
                 </dependency>
                 
                 <dependency>
-                    <groupId>by.ginger.smarthome</groupId>
+                    <groupId>net.easysmarthouse</groupId>
                     <artifactId>hid</artifactId>
                     <version>0.1</version>
                 </dependency>
                 
                 <dependency>
-                    <groupId>by.ginger.smarthome</groupId>
+                    <groupId>net.easysmarthouse</groupId>
                     <artifactId>serial</artifactId>
                     <version>0.1</version>
                 </dependency>
@@ -158,25 +158,25 @@
     <dependencies>
         
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>cameras</artifactId>
             <version>0.1</version>
         </dependency>
         
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>el</artifactId>
             <version>0.1</version>
         </dependency>
       
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>device</artifactId>
             <version>0.1</version>
         </dependency>
         
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>network</artifactId>
             <version>0.1</version>
         </dependency>

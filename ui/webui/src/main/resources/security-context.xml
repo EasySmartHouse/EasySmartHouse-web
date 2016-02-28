@@ -8,12 +8,12 @@
                         http://www.springframework.org/schema/security 
                         http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-    <beans:bean id="authListener" class="by.ginger.smarthome.ui.webui.server.auth.AuthListener"/>
+    <beans:bean id="authListener" class="net.easysmarthouse.ui.webui.server.auth.AuthListener"/>
     
-    <beans:bean id="customLogoutHandler" class="by.ginger.smarthome.ui.webui.server.auth.CustomLogoutHandler"/>
+    <beans:bean id="customLogoutHandler" class="net.easysmarthouse.ui.webui.server.auth.CustomLogoutHandler"/>
     
     <beans:bean id="basicAuthenticationEntryPoint"
-                class="by.ginger.smarthome.ui.webui.server.auth.SuppressedAuthenticationEntryPoint">
+                class="net.easysmarthouse.ui.webui.server.auth.SuppressedAuthenticationEntryPoint">
         <beans:property name="realmName" value="webui"/>
     </beans:bean>
     
@@ -40,13 +40,13 @@
         <custom-filter position="BASIC_AUTH_FILTER" ref="basicAuthenticationFilter" />
     </http>
     
-    <beans:bean id="usersProperties" class="by.ginger.smarthome.ui.webui.server.util.PropertiesSplitterResolver">
+    <beans:bean id="usersProperties" class="net.easysmarthouse.ui.webui.server.util.PropertiesSplitterResolver">
         <beans:property name="location" value="classpath:users.properties"/>
         <beans:property name="propertiesPrefix" value="smarthome.users."/>
         <beans:property name="valueNameSuffix" value="password"/>
     </beans:bean>
     
-    <beans:bean id="webAuthenticationProvider" class="by.ginger.smarthome.ui.webui.server.auth.WebAuthenticationProvider" >
+    <beans:bean id="webAuthenticationProvider" class="net.easysmarthouse.ui.webui.server.auth.WebAuthenticationProvider" >
         <beans:property name="users">
             <beans:bean factory-bean="usersProperties" factory-method="getMap"/>
         </beans:property>

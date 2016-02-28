@@ -3,11 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>by.ginger.smarthome</groupId>
+        <groupId>net.easysmarthouse</groupId>
         <artifactId>SmartHome</artifactId>
         <version>0.1</version>
     </parent>
-    <groupId>by.ginger.smarthome</groupId>
+    <groupId>net.easysmarthouse</groupId>
     <artifactId>serial</artifactId>
     <version>0.1</version>
     <name>serial</name>
@@ -26,13 +26,13 @@
         </dependency>
     
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>device</artifactId>
             <version>0.1</version>
         </dependency>
         
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>network</artifactId>
             <version>0.1</version>
         </dependency>    

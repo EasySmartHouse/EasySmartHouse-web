@@ -7,14 +7,14 @@
     http://www.springframework.org/schema/context 
     http://www.springframework.org/schema/context/spring-context-3.1.xsd">
     
-    <bean id="cameraMotionDetector1" class="by.ginger.smarthome.provider.device.alarm.PlainSignalingElement">
+    <bean id="cameraMotionDetector1" class="net.easysmarthouse.provider.device.alarm.PlainSignalingElement">
         <property name="id" value="0"/>
         <property name="label" value="Детектор движения камеры наблюдения снаружи"/>
         <property name="address" value="USB-2845>CAB@>9AB2> 0"/>
         <property name="enabled" value="true"/>
     </bean>
     
-    <bean name="signalingElement" class="by.ginger.smarthome.provider.device.alarm.PlainSignalingElement">
+    <bean name="signalingElement" class="net.easysmarthouse.provider.device.alarm.PlainSignalingElement">
         <property name="enabled" value="true"/>
         <property name="id" value="1"/>
         <property name="label" value="Датчик движения в гостинной"/>
@@ -22,7 +22,7 @@
         <property name="keyAddress" value="9800000020EC3105"/>
     </bean>
         
-    <bean name="signalingModule" class="by.ginger.smarthome.modules.SignalingElementModule" init-method="initModule">
+    <bean name="signalingModule" class="net.easysmarthouse.modules.SignalingElementModule" init-method="initModule">
         <property name="scheduler" ref="scheduler"/>
         <property name="elements">
             <list>
@@ -40,13 +40,13 @@
     <bean class="org.springframework.remoting.rmi.RmiServiceExporter">
         <property name="serviceName" value="signaling-service"/>
         <property name="service" ref="signalingModule"/>
-        <property name="serviceInterface" value="by.ginger.smarthome.provider.device.alarm.SignalingModule"/>
+        <property name="serviceInterface" value="net.easysmarthouse.provider.device.alarm.SignalingModule"/>
         <property name="registryPort" value="9001"/>
     </bean>
     
     <beans profile="mocks">
         
-        <bean name="signalingElement1" class="by.ginger.smarthome.provider.device.alarm.PlainSignalingElement">
+        <bean name="signalingElement1" class="net.easysmarthouse.provider.device.alarm.PlainSignalingElement">
             <property name="enabled" value="true"/>
             <property name="id" value="2"/>
             <property name="label" value="Окно в кухне"/>
@@ -60,7 +60,7 @@
             </property>
         </bean>
     
-        <bean name="signalingElement2" class="by.ginger.smarthome.provider.device.alarm.PlainSignalingElement">
+        <bean name="signalingElement2" class="net.easysmarthouse.provider.device.alarm.PlainSignalingElement">
             <property name="enabled" value="true"/>
             <property name="id" value="3"/>
             <property name="label" value="Окно в гостинной"/>
@@ -74,7 +74,7 @@
             </property>
         </bean>
     
-        <bean name="signalingElement3" class="by.ginger.smarthome.provider.device.alarm.PlainSignalingElement">
+        <bean name="signalingElement3" class="net.easysmarthouse.provider.device.alarm.PlainSignalingElement">
             <property name="enabled" value="true"/>
             <property name="id" value="4"/>
             <property name="label" value="Окно на задний двор"/>

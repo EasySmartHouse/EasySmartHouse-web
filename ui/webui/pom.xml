@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>ui</artifactId>
-        <groupId>by.ginger.smarthome</groupId>
+        <groupId>net.easysmarthouse</groupId>
         <version>0.1-SNAPSHOT</version>
     </parent>
     
-    <groupId>by.ginger.smarthome.ui</groupId>
+    <groupId>net.easysmarthouse.ui</groupId>
     <artifactId>webui</artifactId>
     <version>0.1-SNAPSHOT</version>
     <packaging>war</packaging>
@@ -27,25 +27,25 @@
    
     <dependencies>
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>network</artifactId>
             <version>0.1</version>
         </dependency>
         
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>device</artifactId>
             <version>0.1</version>
         </dependency>
         
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>maxim</artifactId>
             <version>0.1</version>
         </dependency>
         
         <dependency>
-            <groupId>by.ginger.smarthome.ui</groupId>
+            <groupId>net.easysmarthouse.ui</groupId>
             <artifactId>i18n</artifactId>
             <version>0.1</version>
         </dependency>

@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
     
     <parent>
-        <groupId>by.ginger.smarthome</groupId>
+        <groupId>net.easysmarthouse</groupId>
         <artifactId>SmartHome</artifactId>
         <version>0.1</version>
     </parent>
     
-    <groupId>by.ginger.smarthome</groupId>
+    <groupId>net.easysmarthouse</groupId>
     <artifactId>cameras</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
@@ -27,13 +27,13 @@
     <dependencies>
         
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>device</artifactId>
             <version>0.1</version>
         </dependency>
         
         <dependency>
-            <groupId>by.ginger.smarthome</groupId>
+            <groupId>net.easysmarthouse</groupId>
             <artifactId>network</artifactId>
             <version>0.1</version>
         </dependency>
@@ -196,7 +196,7 @@
                     <arguments>
                         <argument>-cp</argument>
                         <classpath />
-                        <argument>by.ginger.smarthome.cameras.CamerasServer</argument>
+                        <argument>net.easysmarthouse.cameras.CamerasServer</argument>
                         <argument>8087</argument>
                     </arguments>
                 </configuration>

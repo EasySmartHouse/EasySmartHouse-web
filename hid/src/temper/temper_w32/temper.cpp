@@ -2,8 +2,8 @@
 #include "device.h"
 #include "jni.h"
 
-#define VENDOR_ID  by_ginger_smarthome_hid_device_natives_Temper_VENDOR_ID
-#define PRODUCT_ID by_ginger_smarthome_hid_device_natives_Temper_PRODUCT_ID
+#define VENDOR_ID  net_easysmarthouse_hid_device_natives_Temper_VENDOR_ID
+#define PRODUCT_ID net_easysmarthouse_hid_device_natives_Temper_PRODUCT_ID
 
 
 usb_dev_handle *lvr_winusb = NULL;
@@ -17,15 +17,15 @@ void throwJavaException(JNIEnv* pEnv, const char* pClazzName, const char* pMessa
 }
 
 /*
- * Class:     by_ginger_smarthome_hid_device_natives_Temper
+ * Class:     net_easysmarthouse_hid_device_natives_Temper
  * Method:    init
  * Signature: (S)I
  */
-JNIEXPORT jint JNICALL Java_by_ginger_smarthome_hid_device_natives_Temper_init
+JNIEXPORT jint JNICALL Java_net_easysmarthouse_hid_device_natives_Temper_init
 (JNIEnv *pEnv, jobject, jshort){
 	if ((lvr_winusb = setup_libusb_access(PRODUCT_ID, VENDOR_ID)) == NULL) {
 		
-		const char* clazzName = "by/ginger/smarthome/hid/device/natives/NativeDeviceException";
+		const char* clazzName = "net/easysmarthouse/hid/device/natives/NativeDeviceException";
 		const char* message = "Cannot find PCsensor Temper device";
 		throwJavaException(pEnv, clazzName, message);
 
@@ -48,15 +48,15 @@ JNIEXPORT jint JNICALL Java_by_ginger_smarthome_hid_device_natives_Temper_init
 }
 
 /*
- * Class:     by_ginger_smarthome_hid_device_natives_Temper
+ * Class:     net_easysmarthouse_hid_device_natives_Temper
  * Method:    readTemperature
  * Signature: ()D
  */
-JNIEXPORT jdouble JNICALL Java_by_ginger_smarthome_hid_device_natives_Temper_readTemperature
+JNIEXPORT jdouble JNICALL Java_net_easysmarthouse_hid_device_natives_Temper_readTemperature
 (JNIEnv *pEnv, jobject){
 	if (lvr_winusb == NULL) {
 		
-		const char* clazzName = "by/ginger/smarthome/hid/device/natives/NativeDeviceException";
+		const char* clazzName = "net/easysmarthouse/hid/device/natives/NativeDeviceException";
 		const char* message = "Device did not initialized";
 		throwJavaException(pEnv, clazzName, message);
 
@@ -72,15 +72,15 @@ JNIEXPORT jdouble JNICALL Java_by_ginger_smarthome_hid_device_natives_Temper_rea
 }
 
 /*
- * Class:     by_ginger_smarthome_hid_device_natives_Temper
+ * Class:     net_easysmarthouse_hid_device_natives_Temper
  * Method:    close
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_by_ginger_smarthome_hid_device_natives_Temper_close
+JNIEXPORT void JNICALL Java_net_easysmarthouse_hid_device_natives_Temper_close
 (JNIEnv *pEnv, jobject){
 	if (lvr_winusb == NULL) {
 		
-		const char* clazzName = "by/ginger/smarthome/hid/device/natives/NativeDeviceException";
+		const char* clazzName = "net/easysmarthouse/hid/device/natives/NativeDeviceException";
 		const char* message = "Device did not initialized";
 		throwJavaException(pEnv, clazzName, message);
 	}

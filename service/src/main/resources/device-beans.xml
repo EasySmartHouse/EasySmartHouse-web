@@ -6,9 +6,9 @@
 	http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
     
-    <bean class="by.ginger.smarthome.service.DeviceExtractor" autowire="byType" lazy-init="true">
+    <bean class="net.easysmarthouse.service.DeviceExtractor" autowire="byType" lazy-init="true">
         <property name="address" value="USB-2845>CAB@>9AB2> 0" />
-        <property name="class" value="by.ginger.smarthome.provider.device.alarm.SignalingElement"/>
+        <property name="class" value="net.easysmarthouse.provider.device.alarm.SignalingElement"/>
     </bean>
     
 </beans>

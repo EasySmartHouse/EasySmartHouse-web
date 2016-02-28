@@ -9,23 +9,23 @@
     <aop:aspectj-autoproxy />
     
     <bean class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
-        <property name="expression" value="execution (* by.ginger.smarthome.provider.device.alarm.SignalingModule.setEnabled(..)))" />
+        <property name="expression" value="execution (* net.easysmarthouse.provider.device.alarm.SignalingModule.setEnabled(..)))" />
         <property name="advice">
-            <bean class="by.ginger.smarthome.service.logging.SignalingModuleLoggingInterceptor" />
+            <bean class="net.easysmarthouse.service.logging.SignalingModuleLoggingInterceptor" />
         </property>
     </bean>
     
     <bean class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
-        <property name="expression" value="execution (* by.ginger.smarthome.provider.device.actuator.ActuatorsModule.changeState(..)))" />
+        <property name="expression" value="execution (* net.easysmarthouse.provider.device.actuator.ActuatorsModule.changeState(..)))" />
         <property name="advice">
-            <bean class="by.ginger.smarthome.service.logging.ActuatorModuleLoggingInterceptor" />
+            <bean class="net.easysmarthouse.service.logging.ActuatorModuleLoggingInterceptor" />
         </property>
     </bean>
     
     <bean class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
-        <property name="expression" value="execution (* by.ginger.smarthome.provider.device.trigger.TriggerModule.setEnabled(..)))" />
+        <property name="expression" value="execution (* net.easysmarthouse.provider.device.trigger.TriggerModule.setEnabled(..)))" />
         <property name="advice">
-            <bean class="by.ginger.smarthome.service.logging.TriggerModuleLoggingInterceptor" />
+            <bean class="net.easysmarthouse.service.logging.TriggerModuleLoggingInterceptor" />
         </property>
     </bean>
 

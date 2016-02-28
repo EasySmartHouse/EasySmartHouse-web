@@ -10,17 +10,17 @@
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-2.5.xsd">
     
-    <bean id="networkManagersHub" primary="true" destroy-method="endSession" class="by.ginger.smarthome.network.NetworkManagersHub"/> 
+    <bean id="networkManagersHub" primary="true" destroy-method="endSession" class="net.easysmarthouse.network.NetworkManagersHub"/> 
     
     <beans profile="onewire">
         
-        <bean id="adapterProvider" class="by.ginger.smarthome.maxim.network.adapter.AdapterProviderImpl">
+        <bean id="adapterProvider" class="net.easysmarthouse.maxim.network.adapter.AdapterProviderImpl">
             <property name="adapterName" value="{DS9490}" />
             <property name="portName" value="USB1" />
         </bean>
   
         <bean id="searchExtension"
-              class="by.ginger.smarthome.maxim.network.extension.OneWireSearchExtensionImpl"
+              class="net.easysmarthouse.maxim.network.extension.OneWireSearchExtensionImpl"
               init-method="initExtension">
             <property name="adapter">
                 <bean
@@ -31,7 +31,7 @@
             </property>
         </bean>
     
-        <bean id="conversionExtension" class="by.ginger.smarthome.maxim.network.extension.OneWireConversionExtensionImpl">
+        <bean id="conversionExtension" class="net.easysmarthouse.maxim.network.extension.OneWireConversionExtensionImpl">
             <property name="adapter">
                 <bean class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
                     <property name="targetObject" ref="adapterProvider" />
@@ -40,9 +40,9 @@
             </property>
         </bean>
     
-        <bean id="oneWireDeviceConverter" class="by.ginger.smarthome.maxim.device.converter.OneWireDeviceConverter"/>
+        <bean id="oneWireDeviceConverter" class="net.easysmarthouse.maxim.device.converter.OneWireDeviceConverter"/>
     
-        <bean id="oneWireNetworkManager" init-method="init" destroy-method="destroy" class="by.ginger.smarthome.maxim.network.OneWireNetworkManager">
+        <bean id="oneWireNetworkManager" init-method="init" destroy-method="destroy" class="net.easysmarthouse.maxim.network.OneWireNetworkManager">
             <property name="adapterProvider" ref="adapterProvider" />
             <property name="searchExtension" ref="searchExtension" />
             <property name="conversionExtension" ref="conversionExtension" />
@@ -53,9 +53,9 @@
     </beans>
     
     <beans profile="hid">
-        <bean id="hidDeviceConverter" class="by.ginger.smarthome.hid.device.converter.HidDeviceConverter"/> 
+        <bean id="hidDeviceConverter" class="net.easysmarthouse.hid.device.converter.HidDeviceConverter"/> 
         
-        <bean id="hidNetworkManager" init-method="init" destroy-method="destroy" class="by.ginger.smarthome.hid.network.HidNetworkManager">
+        <bean id="hidNetworkManager" init-method="init" destroy-method="destroy" class="net.easysmarthouse.hid.network.HidNetworkManager">
             <property name="deviceConverter" ref="hidDeviceConverter"/>
             <property name="storage" ref="networkManagersHub"/>
         </bean>
@@ -63,7 +63,7 @@
     
     <beans profile="serial">        
         
-        <bean id="serialNetworkManager" init-method="init" destroy-method="destroy" class="by.ginger.smarthome.serial.network.SerialNetworkManager">
+        <bean id="serialNetworkManager" init-method="init" destroy-method="destroy" class="net.easysmarthouse.serial.network.SerialNetworkManager">
             <property name="storage" ref="networkManagersHub"/>
         </bean>
         
@@ -71,7 +71,7 @@
     
     <beans profile="real-cameras">
         
-        <bean id="camerasNetworkManager" init-method="init" destroy-method="destroy" class="by.ginger.smarthome.cameras.network.CamerasNetworkManager">
+        <bean id="camerasNetworkManager" init-method="init" destroy-method="destroy" class="net.easysmarthouse.cameras.network.CamerasNetworkManager">
             <property name="storage" ref="networkManagersHub"/>
             <property name="managedCameraDevices">
                 <list>
@@ -83,16 +83,16 @@
     </beans>
     
     <beans profile="emulated-cameras">
-        <bean id="mockMotionDetector1" class="by.ginger.smarthome.mocks.device.alarm.MockSignalingElement">
+        <bean id="mockMotionDetector1" class="net.easysmarthouse.mocks.device.alarm.MockSignalingElement">
             <property name="address" value="USB-2845>CAB@>9AB2> 0"/>
             <property name="enabled" value="true"/>
         </bean>
         
-        <util:list id="emulatedCamerasDevices" value-type="by.ginger.smarthome.mocks.device.MockDevice">
+        <util:list id="emulatedCamerasDevices" value-type="net.easysmarthouse.mocks.device.MockDevice">
             <ref local="mockMotionDetector1"/>
         </util:list>
         
-        <bean id="camerasNetworkManager" init-method="init" destroy-method="destroy" class="by.ginger.smarthome.mocks.network.MockNetworkManager">
+        <bean id="camerasNetworkManager" init-method="init" destroy-method="destroy" class="net.easysmarthouse.mocks.network.MockNetworkManager">
             <property name="devices" ref="emulatedCamerasDevices" />
             <property name="storage" ref="networkManagersHub"/>
         </bean>
@@ -100,29 +100,29 @@
             
     <beans profile="mocks">
         
-        <bean id="mockNetworkManager" class="by.ginger.smarthome.mocks.network.MockNetworkManager">
+        <bean id="mockNetworkManager" class="net.easysmarthouse.mocks.network.MockNetworkManager">
             <property name="devices" ref="mockDevices" />
             <property name="storage" ref="networkManagersHub"/>
         </bean>
         
-        <bean id="mockSwitchActuator1" class="by.ginger.smarthome.mocks.device.actuator.MockSwitchActuator">
+        <bean id="mockSwitchActuator1" class="net.easysmarthouse.mocks.device.actuator.MockSwitchActuator">
             <property name="address" value="9800000020EC3105"/>
         </bean>
         
-        <bean id="mockSwitchActuator2" class="by.ginger.smarthome.mocks.device.actuator.MockSwitchActuator">
+        <bean id="mockSwitchActuator2" class="net.easysmarthouse.mocks.device.actuator.MockSwitchActuator">
             <property name="address" value="USB0:1503:5824:0"/>
         </bean>
         
-        <bean id="mockSwitchActuator3" class="by.ginger.smarthome.mocks.device.actuator.MockSwitchActuator">
+        <bean id="mockSwitchActuator3" class="net.easysmarthouse.mocks.device.actuator.MockSwitchActuator">
             <property name="address" value="COM10;0"/>
         </bean>
         
-        <bean id="mockSwitchActuator4" class="by.ginger.smarthome.mocks.device.actuator.MockSwitchActuator">
+        <bean id="mockSwitchActuator4" class="net.easysmarthouse.mocks.device.actuator.MockSwitchActuator">
             <property name="address" value="COM10;1"/>
         </bean>
         
         <bean id="dynamicTemperatureSensor1" 
-              class="by.ginger.smarthome.mocks.device.sensor.MockSensorAbstractFactory"
+              class="net.easysmarthouse.mocks.device.sensor.MockSensorAbstractFactory"
               factory-method="createMock">
             <constructor-arg index="0" value="temperature"/>
             <constructor-arg index="1" value="25.0"/>
@@ -132,7 +132,7 @@
         </bean>
                 
         <bean id="staticTemperatureSensor1" 
-              class="by.ginger.smarthome.mocks.device.sensor.MockSensorAbstractFactory"
+              class="net.easysmarthouse.mocks.device.sensor.MockSensorAbstractFactory"
               factory-method="createMock">
             <constructor-arg index="0" value="temperature"/>
             <constructor-arg index="1" value="12.3"/>
@@ -141,7 +141,7 @@
         </bean>
         
         <bean id="dynamicTemperatureSensor2" 
-              class="by.ginger.smarthome.mocks.device.sensor.MockSensorAbstractFactory"
+              class="net.easysmarthouse.mocks.device.sensor.MockSensorAbstractFactory"
               factory-method="createMock">
             <constructor-arg index="0" value="temperature"/>
             <constructor-arg index="1" value="10.0"/>
@@ -151,7 +151,7 @@
         </bean>
         
         <bean id="dynamicHumiditySensor1" 
-              class="by.ginger.smarthome.mocks.device.sensor.MockSensorAbstractFactory"
+              class="net.easysmarthouse.mocks.device.sensor.MockSensorAbstractFactory"
               factory-method="createMock">
             <constructor-arg index="0" value="humidity"/>
             <constructor-arg index="1" value="45.0"/>
@@ -161,7 +161,7 @@
         </bean>
         
         <bean id="staticHumiditySensor1" 
-              class="by.ginger.smarthome.mocks.device.sensor.MockSensorAbstractFactory"
+              class="net.easysmarthouse.mocks.device.sensor.MockSensorAbstractFactory"
               factory-method="createMock">
             <constructor-arg index="0" value="humidity"/>
             <constructor-arg index="1" value="89.3"/>
@@ -170,7 +170,7 @@
         </bean>
         
         <bean id="staticPressureSensor1" 
-              class="by.ginger.smarthome.mocks.device.sensor.MockSensorAbstractFactory"
+              class="net.easysmarthouse.mocks.device.sensor.MockSensorAbstractFactory"
               factory-method="createMock">
             <constructor-arg index="0" value="pressure"/>
             <constructor-arg index="1" value="766.4"/>
@@ -178,37 +178,37 @@
             <property name="address" value="A4500801DC389D16"/>
         </bean>
         
-        <bean id="keyMock1" class="by.ginger.smarthome.mocks.device.key.KeyMockDeviceAutoremovable">
+        <bean id="keyMock1" class="net.easysmarthouse.mocks.device.key.KeyMockDeviceAutoremovable">
             <constructor-arg index="0" ref="mockNetworkManager"/>
             <property name="address" value="FD00000AC4DFE701"/>
             <property name="removeDelay" value="5000"/>
         </bean>
         
-        <bean id="keyMock2" class="by.ginger.smarthome.mocks.device.key.KeyMockDeviceAutoremovable">
+        <bean id="keyMock2" class="net.easysmarthouse.mocks.device.key.KeyMockDeviceAutoremovable">
             <constructor-arg index="0" ref="mockNetworkManager"/>
             <property name="address" value="FD00000AC4DFE702"/>
             <property name="removeDelay" value="30000"/>
         </bean>
         
-        <bean id="keyMock3" class="by.ginger.smarthome.mocks.device.key.KeyMockDeviceAutoremovable">
+        <bean id="keyMock3" class="net.easysmarthouse.mocks.device.key.KeyMockDeviceAutoremovable">
             <constructor-arg index="0" ref="mockNetworkManager"/>
             <property name="address" value="FD00000AC4DFE703"/>
             <property name="removeDelay" value="15000"/>
         </bean>
         
-        <bean id="keyMock4" class="by.ginger.smarthome.mocks.device.key.KeyMockDeviceAutoremovable">
+        <bean id="keyMock4" class="net.easysmarthouse.mocks.device.key.KeyMockDeviceAutoremovable">
             <constructor-arg index="0" ref="mockNetworkManager"/>
             <property name="address" value="FD00000AC4DFE704"/>
             <property name="removeDelay" value="60000"/>
         </bean>
         
-        <bean id="blowerSwitchMock" class="by.ginger.smarthome.mocks.device.actuator.MockAdjustableSwitchActuator">
+        <bean id="blowerSwitchMock" class="net.easysmarthouse.mocks.device.actuator.MockAdjustableSwitchActuator">
             <constructor-arg index="0" value="1.12"/>
             <constructor-arg index="1" value="16.12"/>
             <property name="address" value="234553456775"/>
         </bean>
               
-        <util:list id="mockDevices" value-type="by.ginger.smarthome.mocks.device.MockDevice">
+        <util:list id="mockDevices" value-type="net.easysmarthouse.mocks.device.MockDevice">
             <ref local="mockSwitchActuator1"/>
             <ref local="mockSwitchActuator2"/>
             <ref local="mockSwitchActuator3"/>

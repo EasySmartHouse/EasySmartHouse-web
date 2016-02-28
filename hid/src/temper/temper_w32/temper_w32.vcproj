@@ -51,7 +51,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				LinkLibraryDependencies="true"
-				AdditionalDependencies="C:\Jàva\workspace\git\smarthome\hid\src\temper\temper_w32\libusb.lib"
+				AdditionalDependencies="libusb.lib"
 				AdditionalLibraryDirectories=""
 			/>
 			<Tool
@@ -81,8 +81,9 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
+			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
-			ConfigurationType="1"
+			ConfigurationType="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -101,6 +102,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;C:\Program Files\Java\jdk1.7.0_17\include\win32&quot;;&quot;C:\Program Files\Java\jdk1.7.0_17\include&quot;"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -113,6 +115,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="libusb.lib"
 			/>
 			<Tool
 				Name="VCALinkTool"
