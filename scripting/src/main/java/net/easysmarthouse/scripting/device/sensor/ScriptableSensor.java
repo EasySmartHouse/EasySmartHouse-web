@@ -40,7 +40,7 @@ public class ScriptableSensor extends AbstractScriptableDevice implements Sensor
         } catch (ScriptException ex) {
             throw new DeviceException(ex);
         } catch (NoSuchMethodException ex) {
-            throw new IllegalStateException(ex);
+            throw new IllegalStateException("getValue method is required", ex);
         }
     }
 
@@ -58,7 +58,7 @@ public class ScriptableSensor extends AbstractScriptableDevice implements Sensor
         try {
             return (String) getScriptObjectField("address");
         } catch (ScriptException ex) {
-            throw new IllegalStateException(ex);
+            throw new IllegalStateException("'address' field is required", ex);
         }
     }
 
@@ -67,7 +67,7 @@ public class ScriptableSensor extends AbstractScriptableDevice implements Sensor
         try {
             return (String) getScriptObjectField("label");
         } catch (ScriptException ex) {
-            throw new IllegalStateException(ex);
+            throw new IllegalStateException("'label' field is required", ex);
         }
     }
 
@@ -76,7 +76,7 @@ public class ScriptableSensor extends AbstractScriptableDevice implements Sensor
         try {
             return (String) getScriptObjectField("description");
         } catch (ScriptException ex) {
-            throw new IllegalStateException(ex);
+            return null;
         }
     }
 

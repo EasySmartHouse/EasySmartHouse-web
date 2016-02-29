@@ -65,5 +65,20 @@ public class SensorScriptDecoratorTest {
         String result = instance.getLabel();
         assertEquals(expResult, result);
     }
+    
+    @Test
+    public void testGetAddress() throws Exception {
+        System.out.println("***** getAddress *****");
+        PlainSensor sensor1 = new PlainSensor();
+        sensor1.setAddress("address");
+
+        SensorScriptDecorator instance = new SensorScriptDecorator(sensor1, "sensor1Decorator");
+        instance.setScript(script);
+        instance.setScriptEngine(engine);
+
+        String expResult = "address";
+        String result = instance.getAddress();
+        assertEquals(expResult, result);
+    }
 
 }

@@ -35,7 +35,7 @@ public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> impleme
         } catch (ScriptException ex) {
             throw new DeviceException(ex);
         } catch (NoSuchMethodException ex) {
-            throw new IllegalStateException(ex);
+            return device.getValue();
         }
     }
 
@@ -47,9 +47,11 @@ public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> impleme
     @Override
     public String getAddress() {
         try {
-            return (String) inv.invokeMethod(obj, "getValue");
-        } catch (Exception ex) {
+            return (String) inv.invokeMethod(obj, "getAddress");
+        } catch (ScriptException ex) {
             throw new IllegalStateException(ex);
+        } catch (NoSuchMethodException ex) {
+            return device.getAddress();
         }
     }
 
@@ -57,8 +59,10 @@ public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> impleme
     public String getLabel() {
         try {
             return (String) inv.invokeMethod(obj, "getLabel");
-        } catch (Exception ex) {
+        } catch (ScriptException ex) {
             throw new IllegalStateException(ex);
+        } catch (NoSuchMethodException ex) {
+            return device.getLabel();
         }
     }
 
@@ -66,8 +70,10 @@ public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> impleme
     public String getDescription() {
         try {
             return (String) inv.invokeMethod(obj, "getDescription");
-        } catch (Exception ex) {
+        } catch (ScriptException ex) {
             throw new IllegalStateException(ex);
+        } catch (NoSuchMethodException ex) {
+            return device.getDescription();
         }
     }
 
