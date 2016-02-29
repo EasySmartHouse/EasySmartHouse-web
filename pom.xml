@@ -27,6 +27,7 @@
         <module>cameras</module>
         <module>serial</module>
         <module>el</module>
+        <module>scripting</module>
     </modules>
     
     <build>
