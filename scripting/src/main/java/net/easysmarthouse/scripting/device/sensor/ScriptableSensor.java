@@ -6,35 +6,36 @@
 package net.easysmarthouse.scripting.device.sensor;
 
 import javax.script.Invocable;
-import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import net.easysmarthouse.provider.device.DeviceType;
 import net.easysmarthouse.provider.device.exception.DeviceException;
 import net.easysmarthouse.provider.device.sensor.Sensor;
 import net.easysmarthouse.provider.device.sensor.SensorType;
-import net.easysmarthouse.scripting.device.AbstractScriptableDevice;
+import net.easysmarthouse.scripting.ScriptSource;
+import net.easysmarthouse.scripting.device.ScriptableDevice;
 
 /**
  *
  * @author rusakovich
  */
-public class ScriptableSensor extends AbstractScriptableDevice implements Sensor {
+public class ScriptableSensor implements ScriptableDevice, Sensor {
 
     private Invocable inv;
     private Object obj;
     private final String name;
+    private ScriptSource scriptSource;
 
     public ScriptableSensor(String name) {
         this.name = name;
     }
 
-    private Object getScriptObjectField(String fieldName) throws ScriptException {
+    private synchronized Object getScriptObjectField(String fieldName) throws ScriptException {
         StringBuilder builder = new StringBuilder(name).append(".").append(fieldName);
-        return scriptEngine.eval(builder.toString());
+        return scriptSource.getScriptEngine().eval(builder.toString());
     }
 
     @Override
-    public double getValue() throws DeviceException {
+    public synchronized double getValue() throws DeviceException {
         try {
             return (Double) inv.invokeMethod(obj, "getValue");
         } catch (ScriptException ex) {
@@ -90,10 +91,22 @@ public class ScriptableSensor extends AbstractScriptableDevice implements Sensor
     }
 
     @Override
-    public void setScriptEngine(ScriptEngine scriptEngine) {
-        super.setScriptEngine(scriptEngine);
-        this.inv = (Invocable) scriptEngine;
-        this.obj = scriptEngine.get(name);
+    public void bind(ScriptSource scriptSource) {
+        this.scriptSource = scriptSource;
+        try {
+            scriptSource.getScriptEngine().eval(scriptSource.getScript());
+        } catch (Exception ex) {
+            throw new IllegalStateException(ex);
+        }
+        this.inv = (Invocable) scriptSource.getScriptEngine();
+        this.obj = scriptSource.getScriptEngine().get(name);
+    }
+
+    @Override
+    public void unbind() {
+        if (scriptSource != null) {
+            scriptSource.getScriptEngine().put(name, null);
+        }
     }
 
 }

@@ -5,11 +5,12 @@
  */
 package net.easysmarthouse.scripting.device.decorators;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
+import java.util.Timer;
 import javax.script.ScriptException;
 import net.easysmarthouse.provider.device.sensor.PlainSensor;
-import net.easysmarthouse.scripting.util.FileHelper;
+import net.easysmarthouse.scripting.ScriptRebindingTask;
+import net.easysmarthouse.scripting.ScriptSource;
+import net.easysmarthouse.scripting.ScriptSourceFactory;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -20,17 +21,14 @@ import static org.junit.Assert.*;
  */
 public class SensorScriptDecoratorTest {
 
-    private ScriptEngine engine;
-    private String script;
+    private ScriptSource scriptSource;
 
     public SensorScriptDecoratorTest() {
     }
 
     @Before
     public void setUp() throws ScriptException {
-        ScriptEngineManager manager = new ScriptEngineManager();
-        this.engine = manager.getEngineByName("JavaScript");
-        this.script = FileHelper.readFile("src/test/resources/sensor1Decorator.js");
+        this.scriptSource = ScriptSourceFactory.createScriptResource("file:src/test/resources/sensor1Decorator.js");
     }
 
     /**
@@ -41,11 +39,21 @@ public class SensorScriptDecoratorTest {
         System.out.println("***** getValue *****");
         PlainSensor sensor1 = new PlainSensor();
         sensor1.setValue(4.0);
+        sensor1.setLabel("label");
 
         SensorScriptDecorator instance = new SensorScriptDecorator(sensor1, "sensor1Decorator");
-        instance.setScript(script);
-        instance.setScriptEngine(engine);
-
+        instance.bind(scriptSource);
+        
+//        Timer time = new Timer();
+//        time.schedule(new ScriptRebindingTask(instance, scriptSource), 0, 100);
+//
+//        while(true){
+//            Thread.sleep(1000);
+//            double result = instance.getValue();
+//            System.out.println(result);
+//            System.out.println(instance.getLabel());
+//        }
+        
         double expResult = 400.0;
         double result = instance.getValue();
         assertEquals(expResult, result, 0.05);
@@ -58,14 +66,13 @@ public class SensorScriptDecoratorTest {
         sensor1.setLabel("label");
 
         SensorScriptDecorator instance = new SensorScriptDecorator(sensor1, "sensor1Decorator");
-        instance.setScript(script);
-        instance.setScriptEngine(engine);
+        instance.bind(scriptSource);
 
         String expResult = "decorated label";
         String result = instance.getLabel();
         assertEquals(expResult, result);
     }
-    
+
     @Test
     public void testGetAddress() throws Exception {
         System.out.println("***** getAddress *****");
@@ -73,8 +80,7 @@ public class SensorScriptDecoratorTest {
         sensor1.setAddress("address");
 
         SensorScriptDecorator instance = new SensorScriptDecorator(sensor1, "sensor1Decorator");
-        instance.setScript(script);
-        instance.setScriptEngine(engine);
+        instance.bind(scriptSource);
 
         String expResult = "address";
         String result = instance.getAddress();

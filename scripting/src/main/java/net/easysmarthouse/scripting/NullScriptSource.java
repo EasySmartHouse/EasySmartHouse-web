@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.easysmarthouse.scripting.device;
+package net.easysmarthouse.scripting;
 
 import javax.script.ScriptEngine;
 
@@ -11,13 +11,16 @@ import javax.script.ScriptEngine;
  *
  * @author rusakovich
  */
-public abstract class AbstractScriptableDevice implements ScriptableDevice {
-
-    protected ScriptEngine scriptEngine;
+class NullScriptSource implements ScriptSource {
 
     @Override
-    public void setScriptEngine(ScriptEngine scriptEngine) {
-        this.scriptEngine = scriptEngine;
+    public String getScript() throws ScriptException {
+        return null;
+    }
+
+    @Override
+    public ScriptEngine getScriptEngine() {
+        return null;
     }
 
 }

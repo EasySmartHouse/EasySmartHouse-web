@@ -3,48 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.easysmarthouse.scripting.device.decorators;
+package net.easysmarthouse.scripting.device;
 
 import javax.script.Bindings;
 import javax.script.ScriptContext;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
 import javax.script.SimpleScriptContext;
 import net.easysmarthouse.provider.device.Device;
-import net.easysmarthouse.scripting.device.AbstractScriptableDevice;
+import net.easysmarthouse.scripting.ScriptSource;
 
 /**
  *
  * @author rusakovich
  */
-public abstract class DeviceScriptDecorator<D extends Device> extends AbstractScriptableDevice {
+public abstract class DeviceScriptBinding<D extends Device> implements ScriptableDevice {
 
-    private String script;
     protected D device;
     protected Bindings bindingScope;
 
-    public DeviceScriptDecorator(D device) {
+    public DeviceScriptBinding(D device) {
         this.device = device;
     }
 
-    public void setScript(String script) {
-        this.script = script;
-    }
-
     @Override
-    public void setScriptEngine(ScriptEngine scriptEngine) {
-        super.setScriptEngine(scriptEngine);
-
+    public void bind(ScriptSource scriptSource) {
         ScriptContext context = new SimpleScriptContext();
         this.bindingScope = context.getBindings(ScriptContext.ENGINE_SCOPE);
         bindingScope.put("delegate", device);
-
+        
         try {
-            scriptEngine.eval(script, context);
-        } catch (ScriptException ex) {
+            scriptSource.getScriptEngine().eval(scriptSource.getScript(), context);
+        } catch (Exception ex) {
             throw new IllegalStateException(ex);
         }
+    }
 
+    @Override
+    public void unbind() {
+        if (bindingScope != null) {
+            bindingScope.remove("delegate");
+        }
     }
 
 }

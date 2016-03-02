@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.easysmarthouse.scripting.device;
+package net.easysmarthouse.scripting;
 
-import net.easysmarthouse.scripting.ScriptSource;
+import javax.script.ScriptEngine;
 
 /**
  *
  * @author rusakovich
  */
-public interface ScriptableDevice {
+public interface ScriptSource {
 
-    public void bind(ScriptSource scriptSource);
-    
-    public void unbind();
+    public String getScript() throws ScriptException;
+
+    public ScriptEngine getScriptEngine();
 
 }

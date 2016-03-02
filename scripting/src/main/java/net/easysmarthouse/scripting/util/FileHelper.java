@@ -5,7 +5,9 @@
  */
 package net.easysmarthouse.scripting.util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -53,6 +55,35 @@ public final class FileHelper {
      */
     public static String readFile(String path) {
         return readFile(path, CHARSET_DEFAULT);
+    }
+
+    public static String readFully(InputStream inputStream, String encoding)
+            throws IOException {
+        return new String(readFully(inputStream), encoding);
+    }
+
+    private static byte[] readFully(InputStream inputStream)
+            throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int length = 0;
+        while ((length = inputStream.read(buffer)) != -1) {
+            baos.write(buffer, 0, length);
+        }
+        return baos.toByteArray();
+    }
+
+    public static String getExtension(String fileName) {
+        String extension = "";
+
+        int i = fileName.lastIndexOf('.');
+        int p = Math.max(fileName.lastIndexOf('/'), fileName.lastIndexOf('\\'));
+
+        if (i > p) {
+            extension = fileName.substring(i + 1);
+        }
+
+        return extension;
     }
 
 }

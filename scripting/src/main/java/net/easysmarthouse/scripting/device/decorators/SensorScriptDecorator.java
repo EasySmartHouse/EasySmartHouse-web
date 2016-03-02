@@ -5,19 +5,20 @@
  */
 package net.easysmarthouse.scripting.device.decorators;
 
+import net.easysmarthouse.scripting.device.DeviceScriptBinding;
 import javax.script.Invocable;
-import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import net.easysmarthouse.provider.device.DeviceType;
 import net.easysmarthouse.provider.device.exception.DeviceException;
 import net.easysmarthouse.provider.device.sensor.Sensor;
 import net.easysmarthouse.provider.device.sensor.SensorType;
+import net.easysmarthouse.scripting.ScriptSource;
 
 /**
  *
  * @author rusakovich
  */
-public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> implements Sensor {
+public class SensorScriptDecorator extends DeviceScriptBinding<Sensor> implements Sensor {
 
     private final String name;
     private Invocable inv;
@@ -29,7 +30,7 @@ public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> impleme
     }
 
     @Override
-    public double getValue() throws DeviceException {
+    public synchronized double getValue() throws DeviceException {
         try {
             return (Double) inv.invokeMethod(obj, "getValue");
         } catch (ScriptException ex) {
@@ -45,7 +46,7 @@ public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> impleme
     }
 
     @Override
-    public String getAddress() {
+    public synchronized String getAddress() {
         try {
             return (String) inv.invokeMethod(obj, "getAddress");
         } catch (ScriptException ex) {
@@ -56,7 +57,7 @@ public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> impleme
     }
 
     @Override
-    public String getLabel() {
+    public synchronized String getLabel() {
         try {
             return (String) inv.invokeMethod(obj, "getLabel");
         } catch (ScriptException ex) {
@@ -67,7 +68,7 @@ public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> impleme
     }
 
     @Override
-    public String getDescription() {
+    public synchronized String getDescription() {
         try {
             return (String) inv.invokeMethod(obj, "getDescription");
         } catch (ScriptException ex) {
@@ -83,10 +84,18 @@ public class SensorScriptDecorator extends DeviceScriptDecorator<Sensor> impleme
     }
 
     @Override
-    public void setScriptEngine(ScriptEngine scriptEngine) {
-        super.setScriptEngine(scriptEngine);
-        this.inv = (Invocable) this.scriptEngine;
+    public void bind(ScriptSource scriptSource) {
+        super.bind(scriptSource);
+        this.inv = (Invocable) scriptSource.getScriptEngine();
         this.obj = bindingScope.get(name);
+    }
+
+    @Override
+    public void unbind() {
+        super.unbind();
+        if (bindingScope != null) {
+            bindingScope.remove(name);
+        }
     }
 
 }
