@@ -12,6 +12,8 @@ import net.easysmarthouse.scripting.ScriptSource;
  * @author rusakovich
  */
 public interface ScriptableDevice {
+    
+    public static final String CONTEXT_DEVICE_NAME = "device";
 
     public void bind(ScriptSource scriptSource);
     

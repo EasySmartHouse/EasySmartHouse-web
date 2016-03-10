@@ -5,10 +5,8 @@
  */
 package net.easysmarthouse.scripting.device.decorators;
 
-import java.util.Timer;
 import javax.script.ScriptException;
 import net.easysmarthouse.provider.device.sensor.PlainSensor;
-import net.easysmarthouse.scripting.ScriptRebindingTask;
 import net.easysmarthouse.scripting.ScriptSource;
 import net.easysmarthouse.scripting.ScriptSourceFactory;
 import org.junit.Before;
@@ -43,17 +41,7 @@ public class SensorScriptDecoratorTest {
 
         SensorScriptDecorator instance = new SensorScriptDecorator(sensor1, "sensor1Decorator");
         instance.bind(scriptSource);
-        
-//        Timer time = new Timer();
-//        time.schedule(new ScriptRebindingTask(instance, scriptSource), 0, 100);
-//
-//        while(true){
-//            Thread.sleep(1000);
-//            double result = instance.getValue();
-//            System.out.println(result);
-//            System.out.println(instance.getLabel());
-//        }
-        
+                
         double expResult = 400.0;
         double result = instance.getValue();
         assertEquals(expResult, result, 0.05);

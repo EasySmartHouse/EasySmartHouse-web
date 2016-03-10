@@ -6,8 +6,12 @@
 package net.easysmarthouse.scripting.util;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -84,6 +88,33 @@ public final class FileHelper {
         }
 
         return extension;
+    }
+
+    public static File[] getFiles(String folderName, FilenameFilter filter) {
+        String context = folderName.split(":")[0] + ":";
+        String folderWithoutContext = folderName.split(":")[1];
+
+        File folder = null;
+        if (context.equalsIgnoreCase("file:")) {
+            folder = new File(folderWithoutContext);
+            if (!folder.exists()) {
+                throw new IllegalStateException("Folder [" + folder.getAbsolutePath() + "] doesnt exist");
+            }
+        } else if (context.equalsIgnoreCase("classpath:")) {
+            URL url = FileHelper.class.getResource(folderWithoutContext);
+            try {
+                folder = new File(url.toURI());
+            } catch (URISyntaxException ex) {
+                throw new IllegalStateException(ex);
+            }
+        }
+
+        if (folder != null) {
+            File[] scripts = folder.listFiles(filter);
+            return scripts;
+        }
+
+        return null;
     }
 
 }

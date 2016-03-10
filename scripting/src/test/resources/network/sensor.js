@@ -8,4 +8,3 @@ var device = {
         return 9.99;
     }
 }
-

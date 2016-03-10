@@ -10,6 +10,7 @@ import net.easysmarthouse.provider.device.DeviceType;
 import net.easysmarthouse.provider.device.sensor.SensorType;
 import net.easysmarthouse.scripting.ScriptSource;
 import net.easysmarthouse.scripting.ScriptSourceFactory;
+import net.easysmarthouse.scripting.device.ScriptableDevicePrototype;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -36,8 +37,9 @@ public class ScriptableSensorTest {
     @Test
     public void testGetValue() throws Exception {
         System.out.println("**** getValue *****");
-        ScriptableSensor instance = new ScriptableSensor("sensor1");
-        instance.bind(scriptSource);
+        ScriptableDevicePrototype prototype = new ScriptableDevicePrototype();
+        prototype.bind(scriptSource);
+        ScriptableSensor instance = new ScriptableSensor(prototype);
         double expResult = 9.99;
         double result = instance.getValue();
         assertEquals(expResult, result, 0.01);
@@ -49,8 +51,9 @@ public class ScriptableSensorTest {
     @Test
     public void testGetSensorType() {
         System.out.println("***** getSensorType ******");
-        ScriptableSensor instance = new ScriptableSensor("sensor1");
-        instance.bind(scriptSource);
+        ScriptableDevicePrototype prototype = new ScriptableDevicePrototype();
+        prototype.bind(scriptSource);
+        ScriptableSensor instance = new ScriptableSensor(prototype);
         SensorType sensorType = instance.getSensorType();
         assertEquals(SensorType.HumiditySensor, sensorType);
     }
@@ -61,8 +64,9 @@ public class ScriptableSensorTest {
     @Test
     public void testGetAddress() {
         System.out.println("***** getAddress *****");
-        ScriptableSensor instance = new ScriptableSensor("sensor1");
-        instance.bind(scriptSource);
+        ScriptableDevicePrototype prototype = new ScriptableDevicePrototype();
+        prototype.bind(scriptSource);
+        ScriptableSensor instance = new ScriptableSensor(prototype);
         String address = instance.getAddress();
         assertEquals("address", address);
     }
@@ -73,8 +77,9 @@ public class ScriptableSensorTest {
     @Test
     public void testGetLabel() {
         System.out.println("***** getLabel *****");
-        ScriptableSensor instance = new ScriptableSensor("sensor1");
-        instance.bind(scriptSource);
+        ScriptableDevicePrototype prototype = new ScriptableDevicePrototype();
+        prototype.bind(scriptSource);
+        ScriptableSensor instance = new ScriptableSensor(prototype);
         String label = instance.getLabel();
         assertEquals("label", label);
     }
@@ -85,8 +90,9 @@ public class ScriptableSensorTest {
     @Test
     public void testGetDescription() {
         System.out.println("***** getDescription *****");
-        ScriptableSensor instance = new ScriptableSensor("sensor1");
-        instance.bind(scriptSource);
+        ScriptableDevicePrototype prototype = new ScriptableDevicePrototype();
+        prototype.bind(scriptSource);
+        ScriptableSensor instance = new ScriptableSensor(prototype);
         String description = instance.getDescription();
         assertEquals("description", description);
     }
@@ -97,8 +103,9 @@ public class ScriptableSensorTest {
     @Test
     public void testGetDeviceType() {
         System.out.println("***** getDeviceType *****");
-        ScriptableSensor instance = new ScriptableSensor("sensor1");
-        instance.bind(scriptSource);
+        ScriptableDevicePrototype prototype = new ScriptableDevicePrototype();
+        prototype.bind(scriptSource);
+        ScriptableSensor instance = new ScriptableSensor(prototype);
         DeviceType deviceType = instance.getDeviceType();
         assertEquals(DeviceType.Sensor, deviceType);
     }

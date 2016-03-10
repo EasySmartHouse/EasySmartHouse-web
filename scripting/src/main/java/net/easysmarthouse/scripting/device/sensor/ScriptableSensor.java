@@ -5,108 +5,74 @@
  */
 package net.easysmarthouse.scripting.device.sensor;
 
-import javax.script.Invocable;
-import javax.script.ScriptException;
+import java.io.Closeable;
+import java.io.IOException;
 import net.easysmarthouse.provider.device.DeviceType;
+import static net.easysmarthouse.provider.device.DeviceType.Sensor;
 import net.easysmarthouse.provider.device.exception.DeviceException;
 import net.easysmarthouse.provider.device.sensor.Sensor;
 import net.easysmarthouse.provider.device.sensor.SensorType;
 import net.easysmarthouse.scripting.ScriptSource;
 import net.easysmarthouse.scripting.device.ScriptableDevice;
+import net.easysmarthouse.scripting.device.ScriptableDevicePrototype;
 
 /**
  *
  * @author rusakovich
  */
-public class ScriptableSensor implements ScriptableDevice, Sensor {
+public class ScriptableSensor implements Sensor, ScriptableDevice, Closeable {
 
-    private Invocable inv;
-    private Object obj;
-    private final String name;
-    private ScriptSource scriptSource;
+    private final ScriptableDevicePrototype prototype;
 
-    public ScriptableSensor(String name) {
-        this.name = name;
-    }
-
-    private synchronized Object getScriptObjectField(String fieldName) throws ScriptException {
-        StringBuilder builder = new StringBuilder(name).append(".").append(fieldName);
-        return scriptSource.getScriptEngine().eval(builder.toString());
+    public ScriptableSensor(ScriptableDevicePrototype prototype) {
+        this.prototype = prototype;
     }
 
     @Override
     public synchronized double getValue() throws DeviceException {
-        try {
-            return (Double) inv.invokeMethod(obj, "getValue");
-        } catch (ScriptException ex) {
-            throw new DeviceException(ex);
-        } catch (NoSuchMethodException ex) {
-            throw new IllegalStateException("getValue method is required", ex);
-        }
+        return (Double) prototype.invoke("getValue");
     }
 
     @Override
     public SensorType getSensorType() {
-        try {
-            return SensorType.valueOf((String) getScriptObjectField("sensorType"));
-        } catch (ScriptException ex) {
-            throw new IllegalStateException(ex);
-        }
+        return SensorType.valueOf((String) prototype.getField("sensorType"));
+
     }
 
     @Override
     public String getAddress() {
-        try {
-            return (String) getScriptObjectField("address");
-        } catch (ScriptException ex) {
-            throw new IllegalStateException("'address' field is required", ex);
-        }
+        return (String) prototype.getField("address");
+
     }
 
     @Override
     public String getLabel() {
-        try {
-            return (String) getScriptObjectField("label");
-        } catch (ScriptException ex) {
-            throw new IllegalStateException("'label' field is required", ex);
-        }
+        return (String) prototype.getField("label");
     }
 
     @Override
     public String getDescription() {
-        try {
-            return (String) getScriptObjectField("description");
-        } catch (ScriptException ex) {
-            return null;
-        }
+        return (String) prototype.getField("description");
     }
 
     @Override
     public DeviceType getDeviceType() {
-        try {
-            return DeviceType.valueOf((String) getScriptObjectField("deviceType"));
-        } catch (ScriptException ex) {
-            return DeviceType.Unknown;
-        }
+        return Sensor;
+    }
+
+    @Override
+    public void close() throws IOException {
+        prototype.unbind();
     }
 
     @Override
     public void bind(ScriptSource scriptSource) {
-        this.scriptSource = scriptSource;
-        try {
-            scriptSource.getScriptEngine().eval(scriptSource.getScript());
-        } catch (Exception ex) {
-            throw new IllegalStateException(ex);
-        }
-        this.inv = (Invocable) scriptSource.getScriptEngine();
-        this.obj = scriptSource.getScriptEngine().get(name);
+        prototype.bind(scriptSource);
     }
 
     @Override
     public void unbind() {
-        if (scriptSource != null) {
-            scriptSource.getScriptEngine().put(name, null);
-        }
+        prototype.unbind();
     }
 
 }
