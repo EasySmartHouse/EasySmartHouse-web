@@ -7,5 +7,5 @@ var device = {
     getValue: function () {
         return 9.99;
     }
-}
+};
 

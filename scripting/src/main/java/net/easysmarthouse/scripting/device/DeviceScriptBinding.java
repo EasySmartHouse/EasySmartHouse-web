@@ -17,6 +17,8 @@ import net.easysmarthouse.scripting.ScriptSource;
  */
 public abstract class DeviceScriptBinding<D extends Device> implements ScriptableDevice {
 
+    private static final String DELEGATE_CONTEXT_NAME = "delegate";
+
     protected D device;
     protected Bindings bindingScope;
 
@@ -28,8 +30,8 @@ public abstract class DeviceScriptBinding<D extends Device> implements Scriptabl
     public void bind(ScriptSource scriptSource) {
         ScriptContext context = new SimpleScriptContext();
         this.bindingScope = context.getBindings(ScriptContext.ENGINE_SCOPE);
-        bindingScope.put("delegate", device);
-        
+        bindingScope.put(DELEGATE_CONTEXT_NAME, device);
+
         try {
             scriptSource.getScriptEngine().eval(scriptSource.getScript(), context);
         } catch (Exception ex) {
@@ -40,7 +42,7 @@ public abstract class DeviceScriptBinding<D extends Device> implements Scriptabl
     @Override
     public void unbind() {
         if (bindingScope != null) {
-            bindingScope.remove("delegate");
+            bindingScope.remove(DELEGATE_CONTEXT_NAME);
         }
     }
 

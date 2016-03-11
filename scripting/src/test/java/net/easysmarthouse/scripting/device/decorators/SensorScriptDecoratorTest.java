@@ -5,8 +5,10 @@
  */
 package net.easysmarthouse.scripting.device.decorators;
 
+import java.lang.reflect.Proxy;
 import javax.script.ScriptException;
 import net.easysmarthouse.provider.device.sensor.PlainSensor;
+import net.easysmarthouse.provider.device.sensor.Sensor;
 import net.easysmarthouse.scripting.ScriptSource;
 import net.easysmarthouse.scripting.ScriptSourceFactory;
 import org.junit.Before;
@@ -39,11 +41,16 @@ public class SensorScriptDecoratorTest {
         sensor1.setValue(4.0);
         sensor1.setLabel("label");
 
-        SensorScriptDecorator instance = new SensorScriptDecorator(sensor1, "sensor1Decorator");
-        instance.bind(scriptSource);
-                
+        DeviceInvocationHandler handler = new DeviceInvocationHandler(sensor1);
+        handler.bind(scriptSource);
+
+        Sensor sensor = (Sensor) Proxy.newProxyInstance(
+                Sensor.class.getClassLoader(),
+                new Class[]{Sensor.class},
+                handler);
+
         double expResult = 400.0;
-        double result = instance.getValue();
+        double result = sensor.getValue();
         assertEquals(expResult, result, 0.05);
     }
 
@@ -53,11 +60,16 @@ public class SensorScriptDecoratorTest {
         PlainSensor sensor1 = new PlainSensor();
         sensor1.setLabel("label");
 
-        SensorScriptDecorator instance = new SensorScriptDecorator(sensor1, "sensor1Decorator");
-        instance.bind(scriptSource);
+        DeviceInvocationHandler handler = new DeviceInvocationHandler(sensor1);
+        handler.bind(scriptSource);
+
+        Sensor sensor = (Sensor) Proxy.newProxyInstance(
+                Sensor.class.getClassLoader(),
+                new Class[]{Sensor.class},
+                handler);
 
         String expResult = "decorated label";
-        String result = instance.getLabel();
+        String result = sensor.getLabel();
         assertEquals(expResult, result);
     }
 
@@ -67,11 +79,16 @@ public class SensorScriptDecoratorTest {
         PlainSensor sensor1 = new PlainSensor();
         sensor1.setAddress("address");
 
-        SensorScriptDecorator instance = new SensorScriptDecorator(sensor1, "sensor1Decorator");
-        instance.bind(scriptSource);
+        DeviceInvocationHandler handler = new DeviceInvocationHandler(sensor1);
+        handler.bind(scriptSource);
+
+        Sensor sensor = (Sensor) Proxy.newProxyInstance(
+                Sensor.class.getClassLoader(),
+                new Class[]{Sensor.class},
+                handler);
 
         String expResult = "address";
-        String result = instance.getAddress();
+        String result = sensor.getAddress();
         assertEquals(expResult, result);
     }
 

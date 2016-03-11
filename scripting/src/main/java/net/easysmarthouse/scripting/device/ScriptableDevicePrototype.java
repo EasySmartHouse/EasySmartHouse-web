@@ -34,9 +34,9 @@ public class ScriptableDevicePrototype implements ScriptableDevice {
         return DeviceType.valueOf((String) getField("deviceType"));
     }
 
-    public Object invoke(String methodName) {
+    public Object invoke(String methodName, Object... args) {
         try {
-            return inv.invokeMethod(obj, methodName);
+            return inv.invokeMethod(obj, methodName, args);
         } catch (javax.script.ScriptException ex) {
             throw new RuntimeException(ex);
         } catch (NoSuchMethodException ex) {
