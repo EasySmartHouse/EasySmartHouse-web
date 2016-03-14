@@ -1,12 +1,12 @@
 package net.easysmarthouse.service;
 
+import net.easysmarthouse.service.context.ProxiedResolverGenericXmlApplicationContext;
 import net.easysmarthouse.service.props.AppPropertySource;
 import net.easysmarthouse.sheduler.SimpleSchedulerImpl;
 import net.easysmarthouse.sheduler.task.RefreshDevicesTask;
 import net.easysmarthouse.sheduler.task.TaskProperties;
 import net.easysmarthouse.sheduler.thread.CycleTaskThread;
 import net.easysmarthouse.sheduler.thread.QueueTaskThread;
-import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.core.env.MutablePropertySources;
 
 public class ServiceLauncher {
@@ -20,7 +20,7 @@ public class ServiceLauncher {
     }
     
     public static void main(String[] args) throws InterruptedException {
-        GenericXmlApplicationContext context = new GenericXmlApplicationContext();
+        ProxiedResolverGenericXmlApplicationContext context = new ProxiedResolverGenericXmlApplicationContext();
         context.registerShutdownHook();
         
         MutablePropertySources propertySources = context.getEnvironment().getPropertySources();

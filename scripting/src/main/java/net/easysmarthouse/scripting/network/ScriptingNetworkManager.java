@@ -6,6 +6,7 @@
 package net.easysmarthouse.scripting.network;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,8 @@ import net.easysmarthouse.scripting.util.FileHelper;
  */
 public class ScriptingNetworkManager extends AbstractStorableNetworkManager {
 
+    private final ConversionExtension conversionExtension = new IdleConversionExtension();
+    
     private Map<Device, ScriptSource> scriptSources = new HashMap<Device, ScriptSource>();
     private DeviceConverter deviceConverter = new ScriptableDeviceConverter();
     private final String scriptFolder;
@@ -43,7 +46,12 @@ public class ScriptingNetworkManager extends AbstractStorableNetworkManager {
 
     @Override
     public void init() {
-        File[] scripts = FileHelper.getFiles(scriptFolder, new ScriptFileFilter());
+        File[] scripts = null;
+        try {
+            scripts = FileHelper.getFiles(scriptFolder, new ScriptFileFilter());
+        } catch (IOException ex) {
+            throw new IllegalStateException(ex);
+        }
         if (scripts != null && scripts.length != 0) {
 
             for (int i = 0; i < scripts.length; i++) {
@@ -129,7 +137,7 @@ public class ScriptingNetworkManager extends AbstractStorableNetworkManager {
 
     @Override
     public ConversionExtension getConversionExtension() {
-        return new IdleConversionExtension();
+        return conversionExtension;
     }
 
 }

@@ -19,6 +19,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import net.easysmarthouse.network.NetworkManagerAware;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -26,7 +27,7 @@ import org.apache.commons.logging.LogFactory;
  *
  * @author rusakovich
  */
-public class SimpleSchedulerImpl implements Scheduler, QueueTaskExecutor, CycleTaskExecutor {
+public class SimpleSchedulerImpl implements Scheduler, QueueTaskExecutor, CycleTaskExecutor, NetworkManagerAware {
 
     private static final Log logger = LogFactory.getLog(SimpleSchedulerImpl.class);
 

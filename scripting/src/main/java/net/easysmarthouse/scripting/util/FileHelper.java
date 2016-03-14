@@ -90,7 +90,7 @@ public final class FileHelper {
         return extension;
     }
 
-    public static File[] getFiles(String folderName, FilenameFilter filter) {
+    public static File[] getFiles(String folderName, FilenameFilter filter) throws IOException {
         String context = folderName.split(":")[0] + ":";
         String folderWithoutContext = folderName.split(":")[1];
 
@@ -98,7 +98,7 @@ public final class FileHelper {
         if (context.equalsIgnoreCase("file:")) {
             folder = new File(folderWithoutContext);
             if (!folder.exists()) {
-                throw new IllegalStateException("Folder [" + folder.getAbsolutePath() + "] doesnt exist");
+                throw new IOException("Folder [" + folder.getAbsolutePath() + "] doesnt exist");
             }
         } else if (context.equalsIgnoreCase("classpath:")) {
             URL url = FileHelper.class.getResource(folderWithoutContext);

@@ -19,5 +19,7 @@
     
     <import resource="classpath:logging-context.xml"/>
     <import resource="classpath:device-beans.xml"/>
+    
+    <import resource="classpath:scripting-context.xml"/>
         
 </beans>
