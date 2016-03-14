@@ -7,6 +7,7 @@ package net.easysmarthouse.scripting.device.decorators;
 
 import java.lang.reflect.Proxy;
 import javax.script.ScriptException;
+import net.easysmarthouse.provider.device.Device;
 import net.easysmarthouse.provider.device.sensor.PlainSensor;
 import net.easysmarthouse.provider.device.sensor.Sensor;
 import net.easysmarthouse.scripting.ScriptSource;
@@ -44,13 +45,13 @@ public class SensorScriptDecoratorTest {
         DeviceInvocationHandler handler = new DeviceInvocationHandler(sensor1);
         handler.bind(scriptSource);
 
-        Sensor sensor = (Sensor) Proxy.newProxyInstance(
+        Device sensor = (Device) Proxy.newProxyInstance(
                 Sensor.class.getClassLoader(),
                 new Class[]{Sensor.class},
                 handler);
 
         double expResult = 400.0;
-        double result = sensor.getValue();
+        double result = ((Sensor)sensor).getValue();
         assertEquals(expResult, result, 0.05);
     }
 
@@ -63,9 +64,9 @@ public class SensorScriptDecoratorTest {
         DeviceInvocationHandler handler = new DeviceInvocationHandler(sensor1);
         handler.bind(scriptSource);
 
-        Sensor sensor = (Sensor) Proxy.newProxyInstance(
+        Device sensor = (Device) Proxy.newProxyInstance(
                 Sensor.class.getClassLoader(),
-                new Class[]{Sensor.class},
+                new Class[]{Device.class},
                 handler);
 
         String expResult = "decorated label";
@@ -82,9 +83,9 @@ public class SensorScriptDecoratorTest {
         DeviceInvocationHandler handler = new DeviceInvocationHandler(sensor1);
         handler.bind(scriptSource);
 
-        Sensor sensor = (Sensor) Proxy.newProxyInstance(
+        Device sensor = (Device) Proxy.newProxyInstance(
                 Sensor.class.getClassLoader(),
-                new Class[]{Sensor.class},
+                new Class[]{Device.class},
                 handler);
 
         String expResult = "address";

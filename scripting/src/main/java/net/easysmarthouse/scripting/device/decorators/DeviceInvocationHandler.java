@@ -18,7 +18,7 @@ import net.easysmarthouse.scripting.ScriptSource;
  *
  * @author rusakovich
  */
-public class DeviceInvocationHandler extends DeviceScriptBinding<Device> implements InvocationHandler {
+class DeviceInvocationHandler extends DeviceScriptBinding<Device> implements InvocationHandler {
 
     private Invocable inv;
     private Object obj;
