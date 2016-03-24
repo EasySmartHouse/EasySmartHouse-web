@@ -4,12 +4,11 @@
  */
 package net.easysmarthouse.serial.device.actuator;
 
-import net.easysmarthouse.serial.device.SerialDeviceNotAvailableException;
+import jssc.SerialPort;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
 
 /**
  *
@@ -17,7 +16,7 @@ import org.junit.Before;
  */
 public class RelaySerialDeviceIntegrationTest {
 
-    private static final byte PORT_NUM = (byte) 10;
+    private static final String PORT = "COM10";
     private static RelaySerialDevice channel1;
     private static RelaySerialDevice channel2;
 
@@ -26,8 +25,8 @@ public class RelaySerialDeviceIntegrationTest {
 
     @BeforeClass
     public static void beforeClass() {
-        channel1 = new RelaySerialDevice(PORT_NUM, (byte) 0);
-        channel2 = new RelaySerialDevice(PORT_NUM, (byte) 1);
+        channel1 = new RelaySerialDevice(new SerialPort(PORT), (byte) 0);
+        channel2 = new RelaySerialDevice(new SerialPort(PORT), (byte) 1);
     }
 
     @AfterClass
@@ -37,16 +36,6 @@ public class RelaySerialDeviceIntegrationTest {
         }
         if (channel2 != null) {
             channel2.close();
-        }
-    }
-
-    @Before
-    public void check() throws SerialDeviceNotAvailableException {
-        if (channel1 != null) {
-            channel1.checkAvailable();
-        }
-        if (channel2 != null) {
-            channel2.checkAvailable();
         }
     }
 

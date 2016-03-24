@@ -10,10 +10,10 @@ package net.easysmarthouse.serial.device;
  */
 public abstract class AbstractSerialDevice implements SerialDevice {
 
-    protected final byte portNumber;
+    protected final int portNumber;
     protected String address;
 
-    public AbstractSerialDevice(byte portNumber) {
+    public AbstractSerialDevice(int portNumber) {
         this.portNumber = portNumber;
         buildAddress();
     }
@@ -31,5 +31,4 @@ public abstract class AbstractSerialDevice implements SerialDevice {
         return address;
     }
     
-
 }

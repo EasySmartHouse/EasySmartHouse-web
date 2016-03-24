@@ -4,15 +4,13 @@
  */
 package net.easysmarthouse.serial.device;
 
+import net.easysmarthouse.provider.device.Closeable;
 import net.easysmarthouse.provider.device.Device;
 
 /**
  *
  * @author mirash
  */
-public interface SerialDevice extends Device {
+public interface SerialDevice extends Device, Closeable {
 
-    public void checkAvailable() throws SerialDeviceNotAvailableException;
-    
-    public void closeOpened();
 }

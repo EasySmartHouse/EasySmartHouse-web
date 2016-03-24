@@ -10,16 +10,12 @@ import net.easysmarthouse.provider.device.actuator.ActuatorType;
 import net.easysmarthouse.provider.device.actuator.SwitchActuator;
 import net.easysmarthouse.provider.device.exception.DeviceException;
 import net.easysmarthouse.serial.device.AbstractSerialDevice;
-import net.easysmarthouse.serial.device.SerialDeviceNotAvailableException;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import jssc.SerialPortTimeoutException;
+import net.easysmarthouse.serial.util.SerialPortHelper;
 
 /**
  *
@@ -28,64 +24,19 @@ import jssc.SerialPortTimeoutException;
 public class RelaySerialDevice extends AbstractSerialDevice implements SwitchActuator, Closeable {
 
     private static final int READ_TIMEOUT = 300;
-    private static Map<Integer, SerialPort> relayPorts = Collections.synchronizedMap(
-            new HashMap<Integer, SerialPort>());
     private final byte channel;
     private final SerialPort serialPort;
     private AtomicBoolean state = new AtomicBoolean(false);
-    private volatile SerialDeviceNotAvailableException initError;
 
-    private SerialPort getSerialPort(byte portNumber) {
-        try {
-            SerialPort instance = relayPorts.get((int) portNumber);
-            if (instance != null && instance.isOpened()) {
-                return instance;
-            }
-
-            instance = new SerialPort(this.getPortStr());
-
-            instance.openPort();
-            instance.setParams(SerialPort.BAUDRATE_9600,
-                    SerialPort.DATABITS_8,
-                    SerialPort.STOPBITS_1,
-                    SerialPort.PARITY_NONE);
-
-            relayPorts.put((int) portNumber, instance);
-
-            return instance;
-        } catch (SerialPortException ex) {
-            this.initError = new SerialDeviceNotAvailableException(
-                    "Error while opening serial port: " + this.getAddress(), ex);
-
-            return null;
-        }
-    }
-
-    public RelaySerialDevice(byte portNumber, byte channel) {
-        super(portNumber);
+    public RelaySerialDevice(SerialPort serialPort, byte channel) {
+        super(SerialPortHelper.getPortNumber(serialPort.getPortName()));
         this.channel = channel;
-        this.serialPort = getSerialPort(portNumber);
-    }
-
-    @Override
-    public void checkAvailable() throws SerialDeviceNotAvailableException {
-        if (initError != null) {
-            throw initError;
-        }
-
-        byte[] checkCmd = CommandBuilder.INSTANCE_4CH.getControlCommand(ControlCommand.READING_STATUS, channel);
-        try {
-            serialPort.writeBytes(checkCmd);
-            byte[] response = serialPort.readBytes(8, READ_TIMEOUT);
-
-            if (!Arrays.equals(CommandBuilder.READING_STATE_RESPONSE, response)) {
-                throw new SerialDeviceNotAvailableException("Device response error: " + this.getAddress());
-            }
-        } catch (SerialPortException ex) {
-            throw new SerialDeviceNotAvailableException("Device available error: " + this.getAddress(), ex);
-        } catch (SerialPortTimeoutException ex) {
-            throw new SerialDeviceNotAvailableException("Device read timeout error: " + this.getAddress(), ex);
-        }
+        this.serialPort = serialPort;
+        SerialPortHelper.initPort(serialPort,
+                SerialPort.BAUDRATE_9600,
+                SerialPort.DATABITS_8,
+                SerialPort.STOPBITS_1,
+                SerialPort.PARITY_NONE);
     }
 
     @Override
@@ -137,15 +88,7 @@ public class RelaySerialDevice extends AbstractSerialDevice implements SwitchAct
 
     @Override
     public void close() {
-        Collection<SerialPort> ports = relayPorts.values();
-        for (SerialPort port : ports) {
-            try {
-                port.closePort();
-            } catch (SerialPortException ex) {
-                throw new IllegalStateException("Cannot close port: " + serialPort.getPortName(), ex);
-            }
-        }
-        relayPorts.clear();
+        SerialPortHelper.closePort(serialPort);
     }
 
     @Override
@@ -158,14 +101,4 @@ public class RelaySerialDevice extends AbstractSerialDevice implements SwitchAct
         return super.getAddress() + ";" + this.channel;
     }
 
-    @Override
-    public void closeOpened() {
-        if (this.serialPort != null && this.serialPort.isOpened()) {
-            try {
-                this.serialPort.closePort();
-            } catch (SerialPortException ex) {
-                throw new IllegalStateException("Cannot close port: " + serialPort.getPortName(), ex);
-            }
-        }
-    }
 }

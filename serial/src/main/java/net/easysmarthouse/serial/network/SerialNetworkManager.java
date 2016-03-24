@@ -11,13 +11,13 @@ import net.easysmarthouse.network.extension.IdleConversionExtension;
 import net.easysmarthouse.network.util.AddressHelper;
 import net.easysmarthouse.provider.device.Closeable;
 import net.easysmarthouse.provider.device.Device;
-import net.easysmarthouse.serial.device.SerialDeviceNotAvailableException;
-import net.easysmarthouse.serial.device.actuator.RelaySerialDevice;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import jssc.SerialPort;
 import jssc.SerialPortList;
+import net.easysmarthouse.provider.device.converter.DeviceConverter;
+import net.easysmarthouse.serial.device.converter.SerialDeviceConverter;
 
 /**
  *
@@ -25,8 +25,8 @@ import jssc.SerialPortList;
  */
 public class SerialNetworkManager extends AbstractStorableNetworkManager {
 
-    private final static Pattern COM_PORT_PATTERN = Pattern.compile("^COM\\d{1,2}$");
     private final ConversionExtension conversionExtension = new IdleConversionExtension();
+    private DeviceConverter<SerialPort> serialDeviceConverter = new SerialDeviceConverter();
 
     public SerialNetworkManager() {
     }
@@ -53,32 +53,8 @@ public class SerialNetworkManager extends AbstractStorableNetworkManager {
 
         String[] portNames = SerialPortList.getPortNames();
         for (String portName : portNames) {
-
-            Matcher portMatcher = COM_PORT_PATTERN.matcher(portName);
-            if (portMatcher.matches()) {
-                int portNum = Integer.valueOf(portName.replaceFirst("COM", ""));
-
-                RelaySerialDevice relayCh1 = null;
-                RelaySerialDevice relayCh2 = null;
-                try {
-                    relayCh1 = new RelaySerialDevice((byte) portNum, (byte) 0);
-                    relayCh2 = new RelaySerialDevice((byte) portNum, (byte) 1);
-
-                    relayCh1.checkAvailable();
-                    relayCh2.checkAvailable();
-
-                    devices.add(relayCh1);
-                    devices.add(relayCh2);
-                } catch (SerialDeviceNotAvailableException availableException) {
-                    if (relayCh1 != null) {
-                        relayCh1.closeOpened();
-                    }
-
-                    if (relayCh2 != null) {
-                        relayCh2.closeOpened();
-                    }
-                }
-            }
+            List<Device> serialDevices = serialDeviceConverter.getDevices(Collections.singletonList(new SerialPort(portName)));
+            devices.addAll(serialDevices);
         }
     }
 
