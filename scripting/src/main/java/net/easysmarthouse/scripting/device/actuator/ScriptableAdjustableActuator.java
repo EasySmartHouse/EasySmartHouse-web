@@ -64,6 +64,7 @@ public class ScriptableAdjustableActuator implements AdjustableActuator, Scripta
 
     @Override
     public void close() throws IOException {
+        prototype.destroy();
         prototype.unbind();
     }
 

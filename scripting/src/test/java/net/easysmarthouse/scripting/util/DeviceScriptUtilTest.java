@@ -45,7 +45,7 @@ public class DeviceScriptUtilTest {
         System.out.println("**** getDeviceAddress ****");
         String scriptContent = FileHelper.readFile("src/test/resources/sensor1Decorator.js");
         String result = DeviceScriptUtil.getDeviceAddress(scriptContent);
-        assertEquals("address", result);
+        assertEquals("C2000801AC339F10", result);
     }
     
 }

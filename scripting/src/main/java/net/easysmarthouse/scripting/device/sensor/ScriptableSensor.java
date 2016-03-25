@@ -62,6 +62,7 @@ public class ScriptableSensor implements Sensor, ScriptableDevice, Closeable {
 
     @Override
     public void close() throws IOException {
+        prototype.destroy();
         prototype.unbind();
     }
 

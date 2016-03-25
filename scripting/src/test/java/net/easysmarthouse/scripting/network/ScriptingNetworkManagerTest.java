@@ -27,6 +27,7 @@ public class ScriptingNetworkManagerTest {
         ScriptingNetworkManager instance = new ScriptingNetworkManager("file:src/test/resources/network");
         instance.init();
         assertEquals(1, instance.getDevices().size());
+        instance.destroy();
     }
 
 }

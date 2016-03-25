@@ -61,6 +61,7 @@ public class ScriptingNetworkManager extends AbstractStorableNetworkManager {
 
                 ScriptableDevicePrototype prototype = new ScriptableDevicePrototype();
                 prototype.bind(scriptSource);
+                prototype.init();
 
                 Device device = deviceConverter.getDevice(prototype);
                 scriptSources.put(device, scriptSource);

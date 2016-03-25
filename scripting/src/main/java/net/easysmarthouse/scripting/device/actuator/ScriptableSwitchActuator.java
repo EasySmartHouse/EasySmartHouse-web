@@ -64,6 +64,7 @@ public class ScriptableSwitchActuator implements SwitchActuator, ScriptableDevic
 
     @Override
     public void close() throws IOException {
+        prototype.destroy();
         prototype.unbind();
     }
 

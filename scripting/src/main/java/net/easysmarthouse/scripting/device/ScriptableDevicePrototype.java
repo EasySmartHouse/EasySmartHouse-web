@@ -20,6 +20,10 @@ public class ScriptableDevicePrototype implements ScriptableDevice {
     protected Object obj;
     protected ScriptSource scriptSource;
 
+    public void init() {
+        invoke("init");
+    }
+
     public Object getField(String fieldName) {
         StringBuilder builder = new StringBuilder(CONTEXT_DEVICE_NAME)
                 .append(".").append(fieldName);
@@ -61,6 +65,10 @@ public class ScriptableDevicePrototype implements ScriptableDevice {
         if (scriptSource != null) {
             scriptSource.getScriptEngine().put(CONTEXT_DEVICE_NAME, null);
         }
+    }
+
+    public void destroy() {
+        invoke("destroy");
     }
 
 }
