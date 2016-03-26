@@ -21,7 +21,7 @@ import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 public class CamerasProxyServer {
 
     private static final int CAM_PROXY_SERVER_PORT = 8123;
-    private static final String IP_CAM_CONFIG = "src/main/resources/cameras.xml";
+    private static final String IP_CAM_CONFIG = "cameras" + File.separator + "cameras.xml";
 
     public static Server start(int port, File config) throws Exception {
         IpCamWorker.init(config);

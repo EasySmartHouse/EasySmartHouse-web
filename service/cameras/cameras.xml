@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<storage>
+    <ipcam name="Outdoor" url="http://localhost:8087/stream?cam=0" />
+    <ipcam name="Living room" url="http://localhost:8087/stream?cam=1" />
+</storage>

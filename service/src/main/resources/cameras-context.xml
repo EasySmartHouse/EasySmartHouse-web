@@ -10,6 +10,17 @@
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util-2.5.xsd">
     
+    <bean id="cameras-proxy-server" depends-on="cameras-server" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass" value="net.easysmarthouse.service.process.ProcessStarter" />
+        <property name="targetMethod" value="exec" />
+        <property name="arguments">
+            <list>
+                <value>net.easysmarthouse.cameras.CamerasProxyServer</value>
+                <value>cameras/cameras.jar</value>
+            </list>
+        </property>
+    </bean>
+    
     <beans profile="real-cameras">
         <bean id="cameras-server" depends-on="camerasNetworkManager" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
             <property name="targetClass" value="net.easysmarthouse.cameras.CamerasServer" />
