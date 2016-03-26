@@ -9,6 +9,7 @@ import net.easysmarthouse.provider.device.Device;
 import net.easysmarthouse.provider.device.actuator.SwitchActuator;
 import java.util.List;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -19,7 +20,7 @@ import org.junit.Before;
  */
 public class SerialNetworkManagerIntegrationTest {
 
-    SerialNetworkManager instance = new SerialNetworkManager();
+    private static SerialNetworkManager instance = new SerialNetworkManager();
 
     public SerialNetworkManagerIntegrationTest() {
     }
@@ -32,6 +33,11 @@ public class SerialNetworkManagerIntegrationTest {
     @After
     public void tearDown() throws NetworkException {
         instance.endSession();
+    }
+    
+    @AfterClass
+    public static void tearDownClass() throws NetworkException {
+        instance.destroy();
     }
 
     /**

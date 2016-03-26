@@ -35,13 +35,6 @@ public class SerialDeviceConverter implements DeviceConverter<SerialPort> {
         LinkedList<Device> devices = new LinkedList<>();
         for (SerialPort serialPort : ports) {
 
-            if (relay4ChannelsDeviceDiscovery.isDeviceAvailable(serialPort)) {
-                devices.add(new RelaySerialDevice(serialPort, (byte) 0));
-                devices.add(new RelaySerialDevice(serialPort, (byte) 1));
-                devices.add(new RelaySerialDevice(serialPort, (byte) 2));
-                devices.add(new RelaySerialDevice(serialPort, (byte) 3));
-            }
-
             if (relay2ChannelsDeviceDiscovery.isDeviceAvailable(serialPort)) {
                 devices.add(new RelaySerialDevice(serialPort, (byte) 0));
                 devices.add(new RelaySerialDevice(serialPort, (byte) 1));

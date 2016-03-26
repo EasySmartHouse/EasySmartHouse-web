@@ -28,6 +28,7 @@ public class Relay2ChannelsDeviceDiscovery implements DeviceDiscovery<SerialPort
     @Override
     public boolean isDeviceAvailable(SerialPort port) {
         try {
+            
             SerialPortHelper.initPort(port, SerialPort.BAUDRATE_9600, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
 
             for (int channel = 0; channel < getChannelsCount(); channel++) {

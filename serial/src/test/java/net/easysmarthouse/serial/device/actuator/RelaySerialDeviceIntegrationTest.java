@@ -25,8 +25,9 @@ public class RelaySerialDeviceIntegrationTest {
 
     @BeforeClass
     public static void beforeClass() {
-        channel1 = new RelaySerialDevice(new SerialPort(PORT), (byte) 0);
-        channel2 = new RelaySerialDevice(new SerialPort(PORT), (byte) 1);
+        SerialPort port = new SerialPort(PORT);
+        channel1 = new RelaySerialDevice(port, (byte) 0);
+        channel2 = new RelaySerialDevice(port, (byte) 1);
     }
 
     @AfterClass
