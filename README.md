@@ -100,7 +100,7 @@ The project consists of two main parts: services which represent devices and ui 
 * ***cameras / src / test /*** - cameras interaction
 * ***ui / webui / src / test /*** - user interface tests
 * ***el / src / test /*** - expressions tests
-* ***scripting / src / test /*** - tests of script devices  
+* ***scripting / src / test /*** - tests and examples of script devices  
 
 ### See also ###
 [**jusbrelay**](https://github.com/creepid/jusbrelay) - related module for USB relay interaction  
