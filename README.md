@@ -1,12 +1,55 @@
 # Easy SmartHouse ![SmartHouse Logo](https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/logos/1_Primary_logo_on_transparent.png)
 
-Easy SmartHouse project is an attempt to create an universal platform for the management of home devices using popular interface interaction. At the moment, you can work with devices on the **serial**, **USB** and **1-Wire** protocols, survey and secure your estate using a large number of supported cameras. To add support for the device is quite easy - you just need to add it in one of the configuration files.
+Easy SmartHouse project is an attempt to create an universal platform for the management of home devices using popular interfaces. At the moment, you can work with devices on the **Serial**, **USB**, **1-Wire** and **ZigBee** protocols, survey and secure your estate using a large number of supported cameras. To add support for the device is quite easy - you just need to add it in one of the configuration files.
 Also, some kinds of mock-devices are available for development stage.
 
 ### Embedded expression language ###
 For complex logic devices control a special expression language was developed. 
 Example of expression: 
 > ***$${(device1 present) and ((sensor2>34.44) and (sensor1<3.45))}***
+
+### Device settings in script ###
+Very useful and flexible feature that allows to control and change devices behaviour in runtime. 
+Example of script:
+```javascript 
+var device = {
+    address: "COM3",
+    label: 'Teapot switch',
+    description: 'Teapot switch in the kitchen',
+    deviceType: 'Actuator',
+    actuatorType: 'switchActuator',
+    port: null,
+    state: false,
+    init: function () {
+        var PortType = Java.type("jssc.SerialPort");
+        this.port = new PortType(this.address);
+        var _port = this.port;
+        _port.openPort();
+        var PortClass = PortType.getClass();
+        _port.setParams(PortClass.BAUDRATE_9600, PortClass.DATABITS_8, PortClass.STOPBITS_1, PortClass.PARITY_NONE);
+    },
+    destroy: function () {
+        this.port.closePort();
+    },
+    setValue: function (state) {
+        var comm = null;
+        if (state) {
+            //switch read command
+            comm = [0x55, 0x56, 0x00, 0x00, 0x00, 0x01, 0x01, 0xAD];
+            this.state = true;
+        } else {
+            //switch write command
+            comm = [0x55, 0x56, 0x00, 0x00, 0x00, 0x01, 0x01, 0xAE];
+            this.state = false;
+        }
+        var javaComm = Java.to(comm, "byte[]");
+        this.port.writeBytes(javaComm);
+    },
+    getState: function () {
+        return this.state;
+    }
+};
+```
 
 ### Some screenshots ###
 For now, ***web UI*** is only available 
@@ -44,6 +87,7 @@ The project consists of two main parts: services which represent devices and ui 
 * ***cameras*** - working with cameras
 * ***ui*** - user interfaces repo 
 * ***el*** - device control expressions 
+* ***scripting*** - device script configs  
 
 ### Testing ###
 
@@ -56,6 +100,7 @@ The project consists of two main parts: services which represent devices and ui 
 * ***cameras / src / test /*** - cameras interaction
 * ***ui / webui / src / test /*** - user interface tests
 * ***el / src / test /*** - expressions tests
+* ***scripting / src / test /*** - tests of script devices  
 
 ### See also ###
 [**jusbrelay**](https://github.com/creepid/jusbrelay) - related module for USB relay interaction  
