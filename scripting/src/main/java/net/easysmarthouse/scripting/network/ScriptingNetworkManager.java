@@ -35,7 +35,7 @@ import net.easysmarthouse.scripting.util.FileHelper;
 public class ScriptingNetworkManager extends AbstractStorableNetworkManager {
 
     private final ConversionExtension conversionExtension = new IdleConversionExtension();
-    
+
     private Map<Device, ScriptSource> scriptSources = new HashMap<Device, ScriptSource>();
     private DeviceConverter deviceConverter = new ScriptableDeviceConverter();
     private final String scriptFolder;
@@ -74,17 +74,18 @@ public class ScriptingNetworkManager extends AbstractStorableNetworkManager {
 
     @Override
     public void destroy() {
-        for (ScriptSource scriptSource : scriptSources.values()) {
-            scriptSource.getScriptEngine().getBindings(ScriptContext.ENGINE_SCOPE).clear();
-            scriptSource.getScriptEngine().getBindings(ScriptContext.GLOBAL_SCOPE).clear();
-        }
-
         for (Device device : devices) {
             if (device instanceof Closeable) {
                 ((Closeable) device).close();
             }
         }
         devices.clear();
+
+        for (ScriptSource scriptSource : scriptSources.values()) {
+            scriptSource.getScriptEngine().getBindings(ScriptContext.ENGINE_SCOPE).clear();
+            scriptSource.getScriptEngine().getBindings(ScriptContext.GLOBAL_SCOPE).clear();
+        }
+
     }
 
     @Override

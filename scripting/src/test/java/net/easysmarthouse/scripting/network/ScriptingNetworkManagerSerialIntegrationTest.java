@@ -5,7 +5,7 @@
  */
 package net.easysmarthouse.scripting.network;
 
-import net.easysmarthouse.network.exception.NetworkException;
+import net.easysmarthouse.provider.device.actuator.SwitchActuator;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
@@ -22,10 +22,14 @@ public class ScriptingNetworkManagerSerialIntegrationTest {
      * Test of init method, of class ScriptingNetworkManager.
      */
     @Test
-    public void test() throws NetworkException {
+    public void test() throws Exception {
         System.out.println("**** init ****");
         ScriptingNetworkManager instance = new ScriptingNetworkManager("file:src/test/resources/network-integration-serial");
         instance.init();
+        
+        SwitchActuator actuator = (SwitchActuator)instance.getDevices().get(0);
+        actuator.setState(true);
+        
         assertEquals(1, instance.getDevices().size());
         instance.destroy();
     }
