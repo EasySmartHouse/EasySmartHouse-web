@@ -8,7 +8,7 @@ For complex logic devices control a special expression language was developed.
 Example of expression: 
 > ***$${(device1 present) and ((sensor2>34.44) and (sensor1<3.45))}***
 
-### Device settings in script ###
+### Device's behaviour in script ###
 Very useful and flexible feature that allows to describe, control and change devices behaviour in runtime. 
 Example of JavaScript, that describes 2-channel relay connected to COM-port:
 ```javascript
@@ -72,6 +72,8 @@ var device = {
     }
 };
 ```
+Script syntax, in accordance with [**'Scripting Java' documentation**](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino/Scripting_Java).
+Also Groovy and JRuby scripts can be executed.
 
 ### Some screenshots ###
 For now, ***web UI*** is only available 
