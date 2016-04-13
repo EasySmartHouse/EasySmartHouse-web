@@ -9,11 +9,15 @@ Example of expression:
 > ***$${(device1 present) and ((sensor2>34.44) and (sensor1<3.45))}***
 
 ### Device settings in script ###
-Very useful and flexible feature that allows to control and change devices behaviour in runtime. 
-Example of script:
-```javascript 
+Very useful and flexible feature that allows to describe, control and change devices behaviour in runtime. 
+Example of JavaScript, that describes 2-channel relay connected to COM-port:
+```javascript
+importPackage(Packages.jssc);
+var Importer = JavaImporter(Packages.java.lang,
+                            Packages.java.lang.reflect);
+ 
 var device = {
-    address: "COM4",
+    address: "COM11",
     label: 'Teapot switch',
     description: 'Teapot switch in the kitchen',
     deviceType: 'Actuator',
@@ -21,30 +25,47 @@ var device = {
     port: null,
     state: false,
     init: function () {
-        var PortType = Java.type("jssc.SerialPort");
-        port = new PortType(this.address);
+        //set up port connection
+        port = new SerialPort(this.address);
+        //open port
         port.openPort();
-        var PortClass = port.getClass();
-        port.setParams(PortClass.BAUDRATE_9600, PortClass.DATABITS_8, PortClass.STOPBITS_1, PortClass.PARITY_NONE);
+        //set baudrate, speed, etc.
+        port.setParams(port.BAUDRATE_9600, port.DATABITS_8, port.STOPBITS_1, port.PARITY_NONE);
     },
     destroy: function () {
+        //close port
        if (port){
            port.closePort();
        }
     },
-    setValue: function (state) {
+    setState: function (state) {
+        //create java array
         var comm = null;
+        with(Importer){
+            comm = Array.newInstance(Integer.TYPE, 8);
+        }
+        //base sequence (the first channel)
+        comm[0] = 0x55;
+        comm[1] = 0x56;
+        comm[2] = 0x00;
+        comm[3] = 0x00;
+        comm[4] = 0x00;
+        comm[5] = 0x01;
+        
         if (state) {
-            //switch on command
-            comm = [0x55, 0x56, 0x00, 0x00, 0x00, 0x01, 0x01, 0xAD];
+            //switch on sequence (the first channel)
+            comm[6] = 0x01;
+            comm[7] = 0xAD;
             this.state = true;
         } else {
-            //switch off command
-            comm = [0x55, 0x56, 0x00, 0x00, 0x00, 0x01, 0x01, 0xAE];
+            //switch off sequence (the first channel)
+            comm[6] = 0x02;
+            comm[7] = 0xAE;
             this.state = false;
         }
-        var javaComm = Java.to(comm, "byte[]");
-        port.writeBytes(javaComm);
+        
+        //write to port
+        port.writeIntArray(comm);
     },
     getState: function () {
         return this.state;

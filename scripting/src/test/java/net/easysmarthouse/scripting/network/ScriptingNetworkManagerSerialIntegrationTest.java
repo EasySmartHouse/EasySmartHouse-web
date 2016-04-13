@@ -7,6 +7,8 @@ package net.easysmarthouse.scripting.network;
 
 import net.easysmarthouse.provider.device.actuator.SwitchActuator;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
@@ -28,7 +30,16 @@ public class ScriptingNetworkManagerSerialIntegrationTest {
         instance.init();
         
         SwitchActuator actuator = (SwitchActuator)instance.getDevices().get(0);
+        
+        assertFalse(actuator.getState());
+        
         actuator.setState(true);
+        assertTrue(actuator.getState());
+        
+        Thread.sleep(3000l);
+        
+        actuator.setState(false);
+        assertFalse(actuator.getState());
         
         assertEquals(1, instance.getDevices().size());
         instance.destroy();
