@@ -73,7 +73,7 @@ var device = {
 };
 ```
 Script syntax, in accordance with [**'Scripting Java' documentation**](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino/Scripting_Java).
-Also Groovy and JRuby scripts can be executed.
+Also ***Groovy*** and ***JRuby*** scripts can be executed.
 
 ### Some screenshots ###
 For now, ***web UI*** is only available 
