@@ -34,7 +34,7 @@
     </bean>
     
     <bean id="scriptDecoratorAdvice" class="net.easysmarthouse.service.scripting.ScriptDecoratorAdvice" >
-        <property name="scriptFolder" value="file:src\main\resources\scripts"/>
+        <property name="scriptFolder" value="classpath:scripts"/>
     </bean>
     
 </beans>

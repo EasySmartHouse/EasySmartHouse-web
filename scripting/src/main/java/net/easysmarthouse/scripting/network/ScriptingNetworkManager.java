@@ -46,18 +46,17 @@ public class ScriptingNetworkManager extends AbstractStorableNetworkManager {
 
     @Override
     public void init() {
-        File[] scripts = null;
+        String[] scriptNames = null;
         try {
-            scripts = FileHelper.getFiles(scriptFolder, new ScriptFileFilter());
+            scriptNames = FileHelper.getFiles(scriptFolder, new ScriptFileFilter());
         } catch (IOException ex) {
             throw new IllegalStateException(ex);
         }
-        if (scripts != null && scripts.length != 0) {
 
-            for (int i = 0; i < scripts.length; i++) {
-                File script = scripts[i];
+        if (scriptNames != null && scriptNames.length != 0) {
+            for (int i = 0; i < scriptNames.length; i++) {
                 ScriptSource scriptSource = ScriptSourceFactory.createScriptResource(
-                        scriptFolder + File.separator + script.getName());
+                        scriptFolder + File.separator + scriptNames[i]);
 
                 ScriptableDevicePrototype prototype = new ScriptableDevicePrototype();
                 prototype.bind(scriptSource);

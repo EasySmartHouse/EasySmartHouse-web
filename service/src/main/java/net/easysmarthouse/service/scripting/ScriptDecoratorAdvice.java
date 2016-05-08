@@ -76,9 +76,8 @@ public class ScriptDecoratorAdvice implements MethodInterceptor, InitializingBea
         this.scriptFolder = scriptFolder;
     }
 
-    private String findAddress(File scriptFile) {
-        String content = FileHelper.readFile(scriptFile.getPath());
-        return DeviceScriptUtil.getDeviceAddress(content);
+    private String findAddress(String scriptContent) {
+        return DeviceScriptUtil.getDeviceAddress(scriptContent);
     }
 
     @Override
@@ -88,17 +87,16 @@ public class ScriptDecoratorAdvice implements MethodInterceptor, InitializingBea
         }
 
         try {
-            File[] scriptFiles = FileHelper.getFiles(scriptFolder, new ScriptFileFilter());
-            if (scriptFiles == null || scriptFiles.length == 0) {
+            String[] scriptNames = FileHelper.getFiles(scriptFolder, new ScriptFileFilter());
+            if (scriptNames == null || scriptNames.length == 0) {
                 return;
             }
 
-            for (int i = 0; i < scriptFiles.length; i++) {
-                File scriptFile = scriptFiles[i];
-                String deviceAddress = findAddress(scriptFile);
+            for (int i = 0; i < scriptNames.length; i++) {
+                ScriptSource scriptSource = ScriptSourceFactory.createScriptResource(
+                            scriptFolder + File.separator + scriptNames[i]);
+                String deviceAddress = findAddress(scriptSource.getScript());
                 if (deviceAddress != null) {
-                    ScriptSource scriptSource = ScriptSourceFactory.createScriptResource(
-                            scriptFolder + File.separator + scriptFile.getName());
                     scriptSources.put(deviceAddress, scriptSource);
                 }
             }
