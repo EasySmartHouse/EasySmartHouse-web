@@ -46,6 +46,14 @@
         <beans:property name="valueNameSuffix" value="password"/>
     </beans:bean>
     
+    <!--   <beans:bean id="webAuthenticationProvider" class="net.easysmarthouse.ui.webui.server.auth.YubicoAuthenticationProvider" >
+        <beans:property name="users">
+            <beans:bean factory-bean="usersProperties" factory-method="getMap"/>
+        </beans:property>
+        <beans:property name="clientId" value="21188"/>
+        <beans:property name="apiKey" value="p38Z7DuEB/JC/LbDkkjmvMRB5GI="/>
+    </beans:bean>  -->
+    
     <beans:bean id="webAuthenticationProvider" class="net.easysmarthouse.ui.webui.server.auth.WebAuthenticationProvider" >
         <beans:property name="users">
             <beans:bean factory-bean="usersProperties" factory-method="getMap"/>

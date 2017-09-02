@@ -71,6 +71,12 @@
         </dependency>
         
         <dependency>
+            <groupId>com.yubico</groupId>
+            <artifactId>yubico-validation-client2</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        
+        <dependency>
             <groupId>net.easysmarthouse</groupId>
             <artifactId>device</artifactId>
             <version>0.1</version>

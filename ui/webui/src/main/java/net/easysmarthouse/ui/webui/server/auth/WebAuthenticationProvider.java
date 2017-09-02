@@ -20,7 +20,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class WebAuthenticationProvider implements AuthenticationProvider {
 
     //TODO db authentication
-    private Map<String, String> users = Collections.EMPTY_MAP;
+    protected Map<String, String> users = Collections.EMPTY_MAP;
 
     @Override
     public Authentication authenticate(Authentication authentication)
