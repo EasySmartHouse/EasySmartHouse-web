@@ -1,6 +1,8 @@
 **/target
 .idea
 *.iml
+nbactions.xml
+nbactions-development.xml
 /test/nbproject/private/
 /test/build/
 /ui/i18n/target/

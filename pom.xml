@@ -28,7 +28,8 @@
         <module>serial</module>
         <module>el</module>
         <module>scripting</module>
-    </modules>
+        <module>zigbee</module>
+  </modules>
     
     <build>
         <resources>
