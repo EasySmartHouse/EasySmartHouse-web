@@ -113,6 +113,7 @@ The project consists of two main parts: services which represent devices and ui 
 * ***ui*** - user interfaces repo 
 * ***el*** - device control expressions 
 * ***scripting*** - device script configs  
+* ***zigbee*** - ZigBee network via dongle 
 
 ### Testing ###
 
@@ -126,6 +127,7 @@ The project consists of two main parts: services which represent devices and ui 
 * ***ui / webui / src / test /*** - user interface tests
 * ***el / src / test /*** - expressions tests
 * ***scripting / src / test /*** - tests and examples of script devices  
+* ***zigbee / src / test / *** - ZigBee network testing
 
 ### See also ###
 [**jusbrelay**](https://github.com/creepid/jusbrelay) - related module for USB relay interaction  
