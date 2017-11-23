@@ -17,6 +17,7 @@ import net.easysmarthouse.network.exception.NetworkException;
 import net.easysmarthouse.network.extension.ConversionExtension;
 import net.easysmarthouse.network.extension.IdleConversionExtension;
 import net.easysmarthouse.provider.device.Device;
+import net.easysmarthouse.provider.device.converter.DeviceConverter;
 import net.easysmarthouse.serial.util.SerialPortHelper;
 import net.easysmarthouse.zigbee.device.converter.ZigbeeDeviceConverter;
 
@@ -27,6 +28,7 @@ import net.easysmarthouse.zigbee.device.converter.ZigbeeDeviceConverter;
 public class ZigbeeNetworkManager extends AbstractStorableNetworkManager {
 
     private final ConversionExtension conversionExtension = new IdleConversionExtension();
+    private final DeviceConverter deviceConverter = new ZigbeeDeviceConverter();
     private final AtomicBoolean started = new AtomicBoolean(false);
 
     private String port;
@@ -45,7 +47,7 @@ public class ZigbeeNetworkManager extends AbstractStorableNetworkManager {
 
     private SerialPortEventListener createCoordinatorListener() {
         ZigbeeCoordinatorListener listener = new ZigbeeCoordinatorListener(this, serialPort);
-        listener.setDeviceConverter(new ZigbeeDeviceConverter());
+        listener.setDeviceConverter(deviceConverter);
         return listener;
     }
 
