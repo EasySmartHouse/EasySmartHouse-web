@@ -5,6 +5,7 @@
  */
 package net.easysmarthouse.sheduler.task;
 
+import java.io.IOException;
 import net.easysmarthouse.network.exception.NetworkException;
 import net.easysmarthouse.network.predicate.NetworkSearchSimplePredicate;
 import net.easysmarthouse.provider.device.Device;
@@ -14,6 +15,8 @@ import net.easysmarthouse.provider.device.trigger.ActuatorTrigger;
 import net.easysmarthouse.provider.device.trigger.Trigger;
 import net.easysmarthouse.provider.device.trigger.TriggerCondition;
 import java.util.List;
+import net.easysmarthouse.provider.device.gateway.Gateway;
+import net.easysmarthouse.provider.device.trigger.GatewayTrigger;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -30,6 +33,13 @@ public class CheckTriggerTask extends BaseTask {
     public CheckTriggerTask(Trigger trigger, TriggerCondition condition) {
         this.trigger = trigger;
         this.condition = condition;
+    }
+
+    private void sendGatewayMessage(Gateway gateway, String message)
+            throws IOException {
+        if (gateway != null) {
+            gateway.send(message);
+        }
     }
 
     private void setActuatorValue(String address, Object value)
@@ -64,6 +74,13 @@ public class CheckTriggerTask extends BaseTask {
                     Object value = actTrigger.getActuatorValue();
 
                     setActuatorValue(address, value);
+                    return;
+                }
+
+                if (trigger instanceof GatewayTrigger) {
+                    GatewayTrigger gatewayTrigger = (GatewayTrigger) trigger;
+
+                    sendGatewayMessage(gatewayTrigger.getGateway(), gatewayTrigger.getSendingMessage());
                     return;
                 }
             }
