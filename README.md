@@ -4,10 +4,11 @@ Easy SmartHouse project is an attempt to create an universal platform for the ma
 Also, some kinds of mock-devices are available for development stage.
 
 # Usage
-1. Download release: [EasySmartHouse-0.1-release.zip](https://github.com/EasySmartHouse/EasySmartHouse-web/releases/download/0.1/EasySmartHouse-0.1-release.zip "EasySmartHouse-0.1-release.zip") and unpack it.
-2. Execute **back.bat** or **back.sh** to run service part of the app.
-3. Run **front.bat** or **front.sh** to start frontend.
-4. Go to [http://localhost:8080/webui](http://localhost:8080/webui "http://localhost:8080/webui")
+1. Install [JRE 1.7](http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html "JRE 1.7")
+2. Download application release: [EasySmartHouse-0.1-release.zip](https://github.com/EasySmartHouse/EasySmartHouse-web/releases/download/0.1/EasySmartHouse-0.1-release.zip "EasySmartHouse-0.1-release.zip") and unpack it.
+3. Execute **back.bat** or **back.sh** to run service part of the app.
+4. Run **front.bat** or **front.sh** to start frontend.
+5. Go to [http://localhost:8080/webui](http://localhost:8080/webui "http://localhost:8080/webui")
 
 All the configs of the application are localed in **config** folder. 
 
