@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <bean class="net.easysmarthouse.service.el.DeviceELBeanFactoryPostProcessor"/>
+    
+    <import resource="file:config/network-context.xml"/>
+    <import resource="file:config/scheduler-context.xml"/>
+    
+    <import resource="file:config/trigger-context.xml"/>
+  
+    <import resource="file:config/light-module-context.xml"/>
+    <import resource="file:config/monitoring-module-context.xml"/>
+    <import resource="file:config/signaling-module-context.xml"/>
+    
+    <import resource="file:config/cameras-context.xml"/>
+    
+    <import resource="file:config/logging-context.xml"/>
+    <import resource="file:config/device-beans.xml"/>
+    
+    <import resource="file:config/scripting-context.xml"/>
+        
+</beans>

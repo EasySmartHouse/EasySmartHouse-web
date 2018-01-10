@@ -4,6 +4,7 @@
  */
 package net.easysmarthouse.service.props;
 
+import java.io.File;
 import java.io.IOException;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.support.ResourcePropertySource;
@@ -14,7 +15,7 @@ import org.springframework.core.io.support.ResourcePropertySource;
  */
 public class AppPropertySource extends PropertySource {
 
-    private static final String SOURCE_LOCATION = "classpath:application.properties";
+    private static final String SOURCE_LOCATION = "file:config" + File.separator + "application.properties";
     private static final String SOURCE_NAME = "application.property.source";
     private PropertySource delegate;
 

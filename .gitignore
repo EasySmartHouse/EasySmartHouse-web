@@ -2,9 +2,11 @@
 .idea
 *.iml
 nbactions.xml
+nb-configuration.xml
 nbactions-development.xml
 /test/nbproject/private/
 /test/build/
 /ui/i18n/target/
 /ui/webui/target/
 /scripting/nbproject/
+/Main/nbproject/private/

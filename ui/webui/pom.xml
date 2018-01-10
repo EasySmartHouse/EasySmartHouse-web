@@ -216,11 +216,13 @@
             <groupId>com.github.gwtbootstrap</groupId>
             <artifactId>gwt-bootstrap</artifactId>
             <version>2.0.4.0-SNAPSHOT</version>
-        </dependency>
+        </dependency>      
     </dependencies>
   
   
     <build>
+        <finalName>esh-webui</finalName>
+        
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -280,6 +282,26 @@
                                 </resource>
                             </resources>
                         </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-runner</id>
+                        <!-- here the phase you need -->
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/</outputDirectory>
+                            <resources>          
+                                <resource>
+                                    <directory>/runner</directory>
+                                    <filtering>false</filtering>
+                                    <includes>
+                                        <include>*.*</include>
+                                    </includes>
+                                </resource>
+                            </resources>              
+                        </configuration>            
                     </execution>
                 </executions>
                 <configuration>

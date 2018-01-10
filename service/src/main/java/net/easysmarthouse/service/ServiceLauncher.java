@@ -1,5 +1,6 @@
 package net.easysmarthouse.service;
 
+import java.io.File;
 import net.easysmarthouse.service.context.ProxiedResolverGenericXmlApplicationContext;
 import net.easysmarthouse.service.props.AppPropertySource;
 import net.easysmarthouse.sheduler.SimpleSchedulerImpl;
@@ -14,18 +15,18 @@ public class ServiceLauncher {
     private static final String SHEDULER_BEAN_NAME = "scheduler";
     private static final long REFRESH_TASK_DELAY = 200l;
     private static final String[] CONTEXTS = new String[]{
-        "classpath:app-context.xml",};
-    
+        "file:config" + File.separator + "app-context.xml"};
+
     private ServiceLauncher() {
     }
-    
+
     public static void main(String[] args) throws InterruptedException {
         ProxiedResolverGenericXmlApplicationContext context = new ProxiedResolverGenericXmlApplicationContext();
         context.registerShutdownHook();
-        
+
         MutablePropertySources propertySources = context.getEnvironment().getPropertySources();
         propertySources.addFirst(new AppPropertySource());
-            
+
         context.load(CONTEXTS);
         context.refresh();
 
