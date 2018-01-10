@@ -1,7 +1,15 @@
 # Easy SmartHouse ![SmartHouse Logo](https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/logos/1_Primary_logo_on_transparent.png)
-### [![Build Status](https://travis-ci.org/EasySmartHouse/EasySmartHouse-web.svg)](https://travis-ci.org/EasySmartHouse/EasySmartHouse-web)
-Easy SmartHouse project is an attempt to create an universal platform for the management of home devices using popular interfaces. At the moment, you can work with devices on the **Serial**, **USB**, **1-Wire** and **ZigBee** protocols, survey and secure your estate using a large number of supported cameras. To add support for the device is quite easy - you just need to add it in one of the configuration files.
+
+Easy SmartHouse project is an attempt to create an universal platform for the management of home devices using popular interfaces. At the moment, you can work with devices on the **Serial**, **USB**, **1-Wire** and **ZigBee** protocols, survey and secure your estate using a large number of supported cameras, configure devices interactions via *triggers*. To add support for the device is quite easy - you just need to add it in one of the configuration files.
 Also, some kinds of mock-devices are available for development stage.
+
+# Usage
+1. Download release: [EasySmartHouse-0.1-release.zip](https://github.com/EasySmartHouse/EasySmartHouse-web/releases/download/0.1/EasySmartHouse-0.1-release.zip "EasySmartHouse-0.1-release.zip") and unpack it.
+2. Execute **back.bat** or **back.sh** to run service part of the app.
+3. Run **front.bat** or **front.sh** to start frontend.
+4. Go to [http://localhost:8080/webui](http://localhost:8080/webui "http://localhost:8080/webui")
+
+All the configs of the application are localed in **config** folder. 
 
 # Features
 ### Embedded expression language ###
@@ -10,7 +18,7 @@ Example of expression:
 > ***$${(device1 present) and ((sensor2>34.44) and (sensor1<3.45))}***
 
 ### Device's behaviour in script ###
-Very useful and flexible feature that allows to describe, control and change devices behaviour in runtime. 
+Very useful and flexible feature that allows to describe, control and change devices behaviour in runtime without reloading the application. 
 Example of JavaScript, that describes 2-channel relay connected to COM-port:
 ```javascript
 importPackage(Packages.jssc);
@@ -76,26 +84,9 @@ var device = {
 Script syntax, in accordance with [**'Scripting Java' documentation**](https://developer.mozilla.org/en-US/docs/Mozilla/Projects/Rhino/Scripting_Java).
 Also ***Groovy*** and ***JRuby*** scripts can be executed.
 
-### Some screenshots ###
-For now, ***web UI*** is only available 
-*(click on image to view full size)*.
+### Security ###
 
-[![Login page][2]][1] [![Climate control page][4]][3] [![Cameras page][6]][5] [![Light control page][8]][7] [![Signaling elements page][10]][9]
-  [1]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-login.png
-  [2]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-login-180x109.jpg
- (Login page)
-  [3]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-monitorings.png
-  [4]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-monitorings-180x109.jpg
-(Climate control page)
-  [5]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-cameras.png
-  [6]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-cameras-180x109.jpg
-(Cameras page)
-  [7]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-signaling.png
-  [8]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-switching-180x109.jpg
-(Light control page)
-  [9]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-signaling.png
-  [10]: https://raw.githubusercontent.com/EasySmartHouse/EasySmartHouse-aux/master/screenshots/esh-signaling-180x109.jpg
-(Signaling elements page)
+In addition to standard authentication by login and password, two factor authentication using the [YubiKey](https://www.yubico.com/start/ "YubiKey") is also available.
 
 
 ### Project modules ###
@@ -127,7 +118,9 @@ The project consists of two main parts: services which represent devices and ui 
 * ***ui / webui / src / test /*** - user interface tests
 * ***el / src / test /*** - expressions tests
 * ***scripting / src / test /*** - tests and examples of script devices  
-* ***zigbee / src / test / *** - ZigBee network testing
+* ***zigbee / src / test /*** - ZigBee network testing
 
 ### See also ###
-[**jusbrelay**](https://github.com/creepid/jusbrelay) - related module for USB relay interaction  
+[**jusbrelay**](https://github.com/creepid/jusbrelay) - related module for USB relay interaction
+
+[**Easy SmartHouse-mobile**](https://github.com/EasySmartHouse/EasySmartHouse-mobile) - mobile version of the application 
